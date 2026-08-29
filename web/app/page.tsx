@@ -9,12 +9,12 @@ export default function Home() {
           <div className="max-w-2xl">
             <span className="inline-flex rounded-full bg-black px-3 py-1 text-xs font-medium text-white">Farm Marketplace</span>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-black md:text-5xl">Fresh produce, direct from farmers.</h1>
-            <p className="mt-4 text-base leading-6 text-zinc-600">Mlimi Market connects farmers who list agricultural produce with buyers who want to purchase directly — no middlemen, no online payments, just simple order requests.</p>
+            <p className="mt-4 text-base leading-6 text-zinc-600">Mlimi Market connects farmers who list agricultural produce with buyers who want to purchase directly — no middlemen, no online payments.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/products" className="rounded-full bg-black px-8 py-3 text-center text-sm font-medium text-white hover:bg-zinc-800">Browse Products</Link>
               <Link href="/register" className="rounded-full border border-zinc-200 bg-white px-8 py-3 text-center text-sm font-medium text-black hover:bg-zinc-50">Create account</Link>
             </div>
-            <p className="mt-3 text-xs text-zinc-500">Orders use “Place Order” — no payment processing.</p>
+            <p className="mt-3 text-xs text-zinc-500">Orders use "Place Order" — no payment processing.</p>
           </div>
         </div>
       </section>
