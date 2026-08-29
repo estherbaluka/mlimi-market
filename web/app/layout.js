@@ -29,6 +29,11 @@ export default function RootLayout({ children }) {
         <QueryProvider>
           <Header />
           <div className="flex-1 flex flex-col">{children}</div>
+          <footer className="mt-8 border-t border-zinc-200 bg-white py-6">
+            <div className="mx-auto max-w-6xl px-4 text-center text-sm text-zinc-600">
+              © {new Date().getFullYear()} Baluka Esther — with love ♥. All terms reserved.
+            </div>
+          </footer>
         </QueryProvider>
       </body>
     </html>
