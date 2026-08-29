@@ -15,7 +15,7 @@ const schema = z.object({
   description: z.string().trim().max(2000).optional().or(z.literal("")),
   category: z.string().trim().min(2, "Category is required"),
   price: z.coerce.number().positive("Price must be greater than zero"),
-  currency: z.string().trim().default("MWK"),
+  currency: z.string().trim().default("UGX"),
   unit: z.string().trim().min(1, "Unit is required"),
   stockQuantity: z.coerce.number().int().min(0, "Stock cannot be negative"),
   status: z.enum(["ACTIVE","HIDDEN","SOLD_OUT"]).default("ACTIVE"),
@@ -27,7 +27,7 @@ type FormValues = z.infer<typeof schema>;
 export default function FarmerNewProductPage() {
   const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
-  const { register, handleSubmit, formState:{ errors, isSubmitting } } = useForm<FormValues>({ resolver: zodResolver(schema), defaultValues:{ currency:"MWK", status:"ACTIVE", unit:"kg" }});
+  const { register, handleSubmit, formState:{ errors, isSubmitting } } = useForm<FormValues>({ resolver: zodResolver(schema), defaultValues:{ currency:"UGX", status:"ACTIVE", unit:"kg" }});
 
   async function onSubmit(values: FormValues) {
     setServerError(null);
@@ -58,7 +58,7 @@ export default function FarmerNewProductPage() {
               <div className="space-y-2"><Label htmlFor="unit">Unit</Label><Select id="unit" {...register("unit")}><option value="kg">kg</option><option value="sack">sack</option><option value="basket">basket</option><option value="piece">piece</option><option value="litre">litre</option><option value="dozen">dozen</option><option value="bundle">bundle</option></Select>{errors.unit && <p className="text-sm text-red-600">{errors.unit.message}</p>}</div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2"><Label htmlFor="price">Price (MWK)</Label><Input id="price" type="number" step="0.01" placeholder="2500" {...register("price")} />{errors.price && <p className="text-sm text-red-600">{errors.price.message}</p>}</div>
+              <div className="space-y-2"><Label htmlFor="price">Price (UGX)</Label><Input id="price" type="number" step="0.01" placeholder="2500" {...register("price")} />{errors.price && <p className="text-sm text-red-600">{errors.price.message}</p>}</div>
               <div className="space-y-2"><Label htmlFor="stockQuantity">Stock quantity</Label><Input id="stockQuantity" type="number" placeholder="100" {...register("stockQuantity")} />{errors.stockQuantity && <p className="text-sm text-red-600">{errors.stockQuantity.message}</p>}</div>
             </div>
             <div className="space-y-2"><Label htmlFor="currency">Currency</Label><Input id="currency" {...register("currency")} />{errors.currency && <p className="text-sm text-red-600">{errors.currency.message}</p>}</div>

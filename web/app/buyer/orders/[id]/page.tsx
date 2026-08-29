@@ -36,7 +36,7 @@ export default async function BuyerOrderDetailPage({ params }: { params: Promise
         <Card className="mt-6">
           <h2 className="font-medium text-black">Items</h2>
           <ul className="mt-3 divide-y divide-zinc-200">
-            {items.map((it,i)=>(<li key={i} className="flex justify-between py-2 text-sm"><span>{it.productNameSnapshot as string} · {it.quantity as number} {it.unit as string}</span><span className="font-medium">{((it.unitPriceSnapshot as number)*(it.quantity as number)).toLocaleString()} MWK</span></li>))}
+            {items.map((it,i)=>(<li key={i} className="flex justify-between py-2 text-sm"><span>{it.productNameSnapshot as string} · {it.quantity as number} {it.unit as string}</span><span className="font-medium">{((it.unitPriceSnapshot as number)*(it.quantity as number)).toLocaleString()} UGX</span></li>))}
           </ul>
           <div className="mt-3 flex justify-between font-semibold"><span>Total</span><span>{(order.totalAmount as number).toLocaleString()} {(order.currency as string)}</span></div>
         </Card>

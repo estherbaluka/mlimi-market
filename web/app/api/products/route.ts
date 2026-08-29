@@ -116,7 +116,7 @@ export async function POST(request: Request) {
       description: data.description || null,
       category: data.category,
       price: data.price,
-      currency: data.currency || "MWK",
+      currency: data.currency || "UGX",
       unit: data.unit,
       stockQuantity: data.stockQuantity,
       status: data.status as "ACTIVE",

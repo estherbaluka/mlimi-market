@@ -1,7 +1,6 @@
 # Mlimi Market — Farm Produce Marketplace
 
-> Fresh produce, direct from farmers. An MVP marketplace for Malawi — no payments, no gradients, just simple order requests.
-
+> Fresh produce, direct from farmers. An MVP marketplace for Kayunga District, Uganda  
 [![Next.js](https://img.shields.io/badge/Next.js-16.3-black)](https://nextjs.org/)
 [![Prisma 8](https://img.shields.io/badge/Prisma-8-2D3748)](https://prisma.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)](https://www.typescriptlang.org/)
@@ -34,9 +33,6 @@ Mlimi Market connects **farmers** who list agricultural produce with **buyers** 
 - Dashboard with live counts: users (farmers/buyers/admins), products (active/hidden/sold-out), orders (submitted), conversations
 - Moderate products (hide/remove), view users and orders
 
-### Design Constraints
-- **No payments** — no Stripe/PayPal/mobile-money, no `Pay Now`, only `Place Order`
-- **No gradients** — `linear-gradient` etc. forbidden, solid flat colors only (`bg-black`, `bg-white`, `bg-[#fbfbf5]`)
 
 ---
 
@@ -85,7 +81,7 @@ pnpm exec next build --webpack  # 25 routes
 | Role | Email | Password |
 |---|---|---|
 | ADMIN | admin@mlimi.test | admin123 |
-| FARMER | farmer@mlimi.test | farmer123 (Green Valley Farm, Lilongwe) |
+| FARMER | farmer@mlimi.test | farmer123 (Green Valley Farm, Kayunga) |
 | BUYER | buyer@mlimi.test | buyer123 |
 
 Products: Tomatoes, Onions, Maize, Cassava, Sweet Potatoes, Bananas, Beans, Groundnuts, Eggs, Honey.
@@ -146,12 +142,6 @@ await db.orm.public.Product.where({ id }).update({ title:"New" });
 ## Roles & Order Flow
 
 `SUBMITTED → ACCEPTED → PREPARING → READY_FOR_PICKUP|OUT_FOR_DELIVERY → DELIVERED` (also `REJECTED`, `CANCELLED` from `SUBMITTED|ACCEPTED`). Farmer transitions validated in `app/api/orders/[id]/route.ts`.
-
----
-
-## Design System
-
-Flat, `DESIGN.md` — `bg-black` primary pill, `rounded-full`, `border-zinc-200`, `bg-[#fbfbf5]` canvas, no `linear-gradient`. Uses `Geist` + `Inter`.
 
 ---
 

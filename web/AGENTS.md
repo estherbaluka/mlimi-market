@@ -987,7 +987,7 @@ export const createProductSchema = z.object({
   description: z.string().optional(),
   category: z.string().min(2, "Category is required"),
   price: z.number().positive("Price must be greater than zero"),
-  currency: z.string().default("MWK"),
+  currency: z.string().default("UGX"),
   unit: z.string().min(1, "Unit is required"),
   stockQuantity: z.number().int().min(0, "Stock cannot be negative"),
 });
@@ -1066,7 +1066,7 @@ email: farmer@mlimi.test
 password: farmer123
 role: FARMER
 farmName: Green Valley Farm
-location: Lilongwe
+location: Kayunga
 ```
 
 ### Buyer

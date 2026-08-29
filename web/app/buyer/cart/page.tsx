@@ -27,7 +27,7 @@ export default function BuyerCartPage() {
     <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
       <div className="mx-auto max-w-4xl px-4 py-8">
         <h1 className="text-2xl font-semibold text-black">Cart</h1>
-        <p className="mt-1 text-sm text-zinc-600">{items.length} item(s) · Total {total.toLocaleString()} MWK</p>
+        <p className="mt-1 text-sm text-zinc-600">{items.length} item(s) · Total {total.toLocaleString()} UGX</p>
 
         <div className="mt-6 space-y-4">
           {items.map((item) => (
@@ -43,7 +43,7 @@ export default function BuyerCartPage() {
                   <button onClick={() => updateQuantity(item.productId, item.quantity - 1)} className="h-8 w-8 rounded-full border border-zinc-200 bg-white text-sm hover:bg-zinc-50" aria-label="Decrease quantity">−</button>
                   <span className="min-w-8 text-center text-sm font-medium text-black">{item.quantity}</span>
                   <button onClick={() => updateQuantity(item.productId, item.quantity + 1)} disabled={item.quantity >= item.availableStock} className="h-8 w-8 rounded-full border border-zinc-200 bg-white text-sm hover:bg-zinc-50 disabled:opacity-50" aria-label="Increase quantity">+</button>
-                  <span className="ml-2 text-sm text-zinc-600">{(item.price * item.quantity).toLocaleString()} MWK</span>
+                  <span className="ml-2 text-sm text-zinc-600">{(item.price * item.quantity).toLocaleString()} UGX</span>
                 </div>
               </div>
               <button onClick={() => removeItem(item.productId)} className="self-start text-sm font-medium text-red-600 hover:underline">Remove</button>
@@ -54,7 +54,7 @@ export default function BuyerCartPage() {
         <Card className="mt-6">
           <div className="flex items-center justify-between">
             <span className="font-medium text-black">Cart total</span>
-            <span className="text-lg font-semibold text-black">{total.toLocaleString()} MWK</span>
+            <span className="text-lg font-semibold text-black">{total.toLocaleString()} UGX</span>
           </div>
           <div className="mt-4 flex gap-3">
             <Link href="/buyer/checkout" className="flex-1 rounded-full bg-black px-6 py-3 text-center text-sm font-medium text-white hover:bg-zinc-800">Place Order</Link>

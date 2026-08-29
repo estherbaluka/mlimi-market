@@ -176,7 +176,7 @@ export default function RegisterPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="location">Location</Label>
-                  <Input id="location" placeholder="Lilongwe" {...register("location")} />
+                  <Input id="location" placeholder="Kayunga" {...register("location")} />
                   {errors.location && (
                     <p className="text-sm text-red-600">{errors.location.message}</p>
                   )}

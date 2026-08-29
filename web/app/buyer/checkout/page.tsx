@@ -84,10 +84,10 @@ export default function CheckoutPage() {
           <h2 className="font-medium text-black">Order summary</h2>
           <ul className="mt-3 divide-y divide-zinc-200">
             {items.map((i) => (
-              <li key={i.productId} className="flex justify-between py-2 text-sm"><span className="text-zinc-700">{i.title} × {i.quantity}</span><span className="font-medium text-black">{(i.price*i.quantity).toLocaleString()} MWK</span></li>
+              <li key={i.productId} className="flex justify-between py-2 text-sm"><span className="text-zinc-700">{i.title} × {i.quantity}</span><span className="font-medium text-black">{(i.price*i.quantity).toLocaleString()} UGX</span></li>
             ))}
           </ul>
-          <div className="mt-3 flex justify-between font-semibold text-black"><span>Total</span><span>{total.toLocaleString()} MWK</span></div>
+          <div className="mt-3 flex justify-between font-semibold text-black"><span>Total</span><span>{total.toLocaleString()} UGX</span></div>
         </Card>
 
         <Card className="mt-6">
@@ -106,7 +106,7 @@ export default function CheckoutPage() {
             {method === "DELIVERY" ? (
               <div className="space-y-2">
                 <Label htmlFor="deliveryAddress">Delivery address</Label>
-                <Input id="deliveryAddress" placeholder="Area 47, Lilongwe" {...register("deliveryAddress")} />
+                <Input id="deliveryAddress" placeholder="Area 47, Kayunga" {...register("deliveryAddress")} />
                 {errors.deliveryAddress && <p className="text-sm text-red-600">{errors.deliveryAddress.message}</p>}
               </div>
             ) : (

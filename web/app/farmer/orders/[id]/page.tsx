@@ -61,7 +61,7 @@ export default async function FarmerOrderDetailPage({ params }: { params: Promis
           <h2 className="font-medium text-black">Items</h2>
           <ul className="mt-3 divide-y divide-zinc-200">
             {items.map((it,i)=>(
-              <li key={i} className="flex justify-between py-2 text-sm"><span className="text-zinc-700">{it.productNameSnapshot as string} · {it.quantity as number} {it.unit as string}</span><span className="font-medium text-black">{((it.unitPriceSnapshot as number)*(it.quantity as number)).toLocaleString()} MWK</span></li>
+              <li key={i} className="flex justify-between py-2 text-sm"><span className="text-zinc-700">{it.productNameSnapshot as string} · {it.quantity as number} {it.unit as string}</span><span className="font-medium text-black">{((it.unitPriceSnapshot as number)*(it.quantity as number)).toLocaleString()} UGX</span></li>
             ))}
           </ul>
           <div className="mt-3 flex justify-between font-semibold text-black"><span>Total</span><span>{(order.totalAmount as number).toLocaleString()} {(order.currency as string)}</span></div>

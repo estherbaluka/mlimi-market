@@ -25,7 +25,7 @@ async function main() {
   try {
     const fps = await db.orm.public.FarmerProfile.where({ userId: farmerId }).select("id").all() as unknown as Array<{ id:number }>;
     if (!fps[0]) {
-      await db.orm.public.FarmerProfile.create({ userId: farmerId, farmName: "Green Valley Farm", location: "Lilongwe", bio: "Family farm growing fresh produce since 2010." });
+      await db.orm.public.FarmerProfile.create({ userId: farmerId, farmName: "Green Valley Farm", location: "Kayunga", bio: "Family farm growing fresh produce since 2010." });
       console.log("Farmer profile created");
     }
   } catch (e) { console.error("farmer profile", e); }
@@ -34,7 +34,7 @@ async function main() {
   try {
     const bps = await db.orm.public.BuyerProfile.where({ userId: buyerId }).select("id").all() as unknown as Array<{ id:number }>;
     if (!bps[0]) {
-      await db.orm.public.BuyerProfile.create({ userId: buyerId, defaultAddress: "Area 47", city: "Lilongwe", district: "Lilongwe" });
+      await db.orm.public.BuyerProfile.create({ userId: buyerId, defaultAddress: "Area 47", city: "Kayunga", district: "Kayunga" });
       console.log("Buyer profile created");
     }
   } catch (e) { console.error("buyer profile", e); }
@@ -64,7 +64,7 @@ async function main() {
         description: p.description,
         category: p.category,
         price: p.price,
-        currency: "MWK",
+        currency: "UGX",
         unit: p.unit,
         stockQuantity: p.stockQuantity,
         status: "ACTIVE",

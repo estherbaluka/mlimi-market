@@ -51,7 +51,7 @@ export async function POST(request: Request) {
       pickupLocation: deliveryMethod === "PICKUP" ? pickupLocation || null : null,
       buyerNote: buyerNote || null,
       totalAmount,
-      currency: "MWK",
+      currency: "UGX",
     });
     const orderId = (order as unknown as { id:number }).id;
 

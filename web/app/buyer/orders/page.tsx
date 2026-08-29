@@ -37,7 +37,7 @@ export default async function BuyerOrdersPage() {
                 </div>
                 <p className="mt-1 text-xs text-zinc-500">{new Date(o.createdAt).toLocaleString()}</p>
                 <ul className="mt-3 space-y-1 text-sm text-zinc-700">
-                  {o.items.map((it,i)=>(<li key={i}>{it.productNameSnapshot} — {it.quantity} {it.unit} × {it.unitPriceSnapshot.toLocaleString()} MWK</li>))}
+                  {o.items.map((it,i)=>(<li key={i}>{it.productNameSnapshot} — {it.quantity} {it.unit} × {it.unitPriceSnapshot.toLocaleString()} UGX</li>))}
                 </ul>
                 <p className="mt-3 font-semibold text-black">Total {o.totalAmount.toLocaleString()} {o.currency}</p>
               </Card>

@@ -13,7 +13,7 @@ const schema = z.object({
   description: z.string().trim().max(2000).optional().or(z.literal("")),
   category: z.string().trim().min(2, "Category is required"),
   price: z.coerce.number().positive("Price must be greater than zero"),
-  currency: z.string().trim().default("MWK"),
+  currency: z.string().trim().default("UGX"),
   unit: z.string().trim().min(1, "Unit is required"),
   stockQuantity: z.coerce.number().int().min(0, "Stock cannot be negative"),
   status: z.enum(["ACTIVE","HIDDEN","SOLD_OUT"]),
@@ -49,7 +49,7 @@ export function EditProductForm({ product }: { product: { id:number; title:strin
         <div className="space-y-2"><Label htmlFor="unit">Unit</Label><Select id="unit" {...register("unit")}><option value="kg">kg</option><option value="sack">sack</option><option value="basket">basket</option><option value="piece">piece</option><option value="litre">litre</option><option value="dozen">dozen</option><option value="bundle">bundle</option></Select>{errors.unit && <p className="text-sm text-red-600">{errors.unit.message}</p>}</div>
       </div>
       <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2"><Label htmlFor="price">Price (MWK)</Label><Input id="price" type="number" {...register("price")} />{errors.price && <p className="text-sm text-red-600">{errors.price.message}</p>}</div>
+        <div className="space-y-2"><Label htmlFor="price">Price (UGX)</Label><Input id="price" type="number" {...register("price")} />{errors.price && <p className="text-sm text-red-600">{errors.price.message}</p>}</div>
         <div className="space-y-2"><Label htmlFor="stockQuantity">Stock</Label><Input id="stockQuantity" type="number" {...register("stockQuantity")} />{errors.stockQuantity && <p className="text-sm text-red-600">{errors.stockQuantity.message}</p>}</div>
       </div>
       <div className="space-y-2"><Label htmlFor="status">Status</Label><Select id="status" {...register("status")}><option value="ACTIVE">ACTIVE</option><option value="HIDDEN">HIDDEN</option><option value="SOLD_OUT">SOLD_OUT</option></Select></div>

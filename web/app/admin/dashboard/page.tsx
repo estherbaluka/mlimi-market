@@ -120,7 +120,7 @@ export default async function AdminDashboard() {
                 <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-md border border-zinc-200 px-3 py-3">
                   <div className="min-w-0">
                     <p className="text-sm font-medium text-black truncate">{p.title} <span className="font-normal text-zinc-500">· {p.category}</span></p>
-                    <p className="text-xs text-zinc-500">{p.price.toLocaleString()} MWK · {p.status} · Farmer: {p.farmerName || p.farmerId}</p>
+                    <p className="text-xs text-zinc-500">{p.price.toLocaleString()} UGX · {p.status} · Farmer: {p.farmerName || p.farmerId}</p>
                   </div>
                   <div className="flex gap-2">
                     <Link href={`/products/${p.id}`} className="rounded-full border border-zinc-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:bg-zinc-50">View</Link>

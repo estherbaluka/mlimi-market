@@ -88,7 +88,7 @@ export default async function ProductsPage({ searchParams }: SearchProps) {
       <div className="mx-auto max-w-6xl px-4 py-8">
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-semibold tracking-tight text-black">Browse Products</h1>
-          <p className="text-sm text-zinc-600">Fresh produce from farmers across Malawi. No online payment — place an order to request produce.</p>
+          <p className="text-sm text-zinc-600">Fresh produce from farmers across Kayunga. No online payment — place an order to request produce.</p>
         </div>
 
         <form className="mt-6 rounded-xl border border-zinc-200 bg-white p-4">
@@ -131,11 +131,11 @@ export default async function ProductsPage({ searchParams }: SearchProps) {
           </div>
           <div className="mt-4 grid gap-4 md:grid-cols-4">
             <div className="space-y-1">
-              <Label htmlFor="minPrice">Min price (MWK)</Label>
+              <Label htmlFor="minPrice">Min price (UGX)</Label>
               <Input id="minPrice" name="minPrice" type="number" defaultValue={params.minPrice || ""} placeholder="0" />
             </div>
             <div className="space-y-1">
-              <Label htmlFor="maxPrice">Max price (MWK)</Label>
+              <Label htmlFor="maxPrice">Max price (UGX)</Label>
               <Input id="maxPrice" name="maxPrice" type="number" defaultValue={params.maxPrice || ""} placeholder="10000" />
             </div>
           </div>

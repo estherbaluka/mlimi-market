@@ -19,7 +19,7 @@ export const createProductSchema = z.object({
   description: z.string().trim().max(2000).optional().or(z.literal("")),
   category: z.string().trim().min(2, "Category is required"),
   price: z.number().positive("Price must be greater than zero"),
-  currency: z.string().trim().default("MWK"),
+  currency: z.string().trim().default("UGX"),
   unit: z.string().trim().min(1, "Unit is required"),
   stockQuantity: z.number().int().min(0, "Stock cannot be negative"),
   status: z.enum(["ACTIVE", "HIDDEN", "SOLD_OUT"]).default("ACTIVE"),
