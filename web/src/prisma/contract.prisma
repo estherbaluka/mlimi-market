@@ -1,0 +1,178 @@
+// use prisma-next
+
+enum Role {
+  @@type("pg/text@1")
+  FARMER = "FARMER"
+  BUYER = "BUYER"
+  ADMIN = "ADMIN"
+}
+
+enum ProductStatus {
+  @@type("pg/text@1")
+  ACTIVE = "ACTIVE"
+  HIDDEN = "HIDDEN"
+  SOLD_OUT = "SOLD_OUT"
+}
+
+enum OrderStatus {
+  @@type("pg/text@1")
+  SUBMITTED = "SUBMITTED"
+  ACCEPTED = "ACCEPTED"
+  REJECTED = "REJECTED"
+  PREPARING = "PREPARING"
+  READY_FOR_PICKUP = "READY_FOR_PICKUP"
+  OUT_FOR_DELIVERY = "OUT_FOR_DELIVERY"
+  DELIVERED = "DELIVERED"
+  CANCELLED = "CANCELLED"
+}
+
+enum DeliveryMethod {
+  @@type("pg/text@1")
+  PICKUP = "PICKUP"
+  DELIVERY = "DELIVERY"
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  name         String?
+  email        String    @unique
+  phone        String?
+  passwordHash String
+  role         Role
+  createdAt    TimestamptzString @default(now())
+  updatedAt    temporal.updatedAtString()
+
+  farmerProfile FarmerProfile?
+  buyerProfile  BuyerProfile?
+
+  products           Product[]
+  orders             Order[]        @relation("BuyerOrders")
+  sentMessages       Message[]      @relation("SentMessages")
+  buyerConversations Conversation[] @relation("BuyerConversations")
+  farmerConversations Conversation[] @relation("FarmerConversations")
+}
+
+model FarmerProfile {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  farmName  String
+  location  String
+  bio       String?
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
+
+model BuyerProfile {
+  id             Int      @id @default(autoincrement())
+  userId         Int      @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  defaultAddress String?
+  city           String?
+  district       String?
+  createdAt      TimestamptzString @default(now())
+  updatedAt      temporal.updatedAtString()
+}
+
+model Product {
+  id            Int           @id @default(autoincrement())
+  farmerId      Int
+  farmer        User          @relation(fields: [farmerId], references: [id], onDelete: Cascade)
+  title         String
+  description   String?
+  category      String
+  price         Int
+  currency      String        @default("MWK")
+  unit          String
+  stockQuantity Int           @default(0)
+  status        ProductStatus @default(ACTIVE)
+  createdAt     TimestamptzString @default(now())
+  updatedAt     temporal.updatedAtString()
+
+  images        ProductImage[]
+  orderItems    OrderItem[]
+  conversations Conversation[]
+
+  @@index([farmerId])
+  @@index([category])
+  @@index([status])
+}
+
+model ProductImage {
+  id        Int      @id @default(autoincrement())
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  alt       String?
+  isPrimary Boolean  @default(false)
+  createdAt TimestamptzString @default(now())
+
+  @@index([productId])
+}
+
+model Order {
+  id              Int            @id @default(autoincrement())
+  buyerId         Int
+  buyer           User           @relation("BuyerOrders", fields: [buyerId], references: [id], onDelete: Cascade)
+  status          OrderStatus    @default(SUBMITTED)
+  deliveryMethod  DeliveryMethod
+  deliveryAddress String?
+  pickupLocation  String?
+  buyerNote       String?
+  totalAmount     Int            @default(0)
+  currency        String         @default("MWK")
+  createdAt       TimestamptzString @default(now())
+  updatedAt       temporal.updatedAtString()
+
+  items OrderItem[]
+
+  @@index([buyerId])
+  @@index([status])
+}
+
+model OrderItem {
+  id                 Int      @id @default(autoincrement())
+  orderId            Int
+  order              Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId          Int
+  product            Product  @relation(fields: [productId], references: [id], onDelete: Restrict)
+  productNameSnapshot String
+  unitPriceSnapshot   Int
+  quantity           Int
+  unit               String
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Conversation {
+  id        Int      @id @default(autoincrement())
+  buyerId   Int
+  buyer     User     @relation("BuyerConversations", fields: [buyerId], references: [id], onDelete: Cascade)
+  farmerId  Int
+  farmer    User     @relation("FarmerConversations", fields: [farmerId], references: [id], onDelete: Cascade)
+  productId Int?
+  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+
+  messages Message[]
+
+  @@unique([buyerId, farmerId, productId])
+  @@index([buyerId])
+  @@index([farmerId])
+}
+
+model Message {
+  id             Int      @id @default(autoincrement())
+  conversationId Int
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  senderId       Int
+  sender         User     @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  body           String
+  isRead         Boolean  @default(false)
+  createdAt      TimestamptzString @default(now())
+
+  @@index([conversationId])
+  @@index([senderId])
+}
