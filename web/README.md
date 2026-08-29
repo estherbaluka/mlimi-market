@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mlimi Market — Web (Next.js)
 
-## Getting Started
+> `web/` is the Next.js 16 App Router application for Mlimi Market (farm produce marketplace). See root `../README.md` for full monorepo overview.
 
-First, run the development server:
+## Stack
+
+Next.js 16 + React 19 + TypeScript 6, Tailwind 4, Prisma 8 (`@prisma/orm-postgres`), PostgreSQL (Supabase), Zustand, TanStack Query, `jose` JWT, `bcryptjs`.
+
+## Local Dev
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+cp .env.example .env   # fill DATABASE_URL, AUTH_SECRET
+pnpm contract:emit
+pnpm db:seed           # admin@mlimi.test / farmer@mlimi.test / buyer@mlimi.test
+pnpm dev --webpack     # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build: `pnpm exec tsc --noEmit && pnpm exec next build --webpack` (25 routes).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Key Routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/` marketing, `/products` `/products/[id]` (public, filters, pagination)
+- `/buyer/*` cart checkout orders messages (BUYER)
+- `/farmer/*` products orders messages (FARMER)
+- `/admin/dashboard` (ADMIN)
+- `/api/*` auth products orders conversations
 
-## Learn More
+## Constraints
 
-To learn more about Next.js, take a look at the following resources:
+Solid colors only, no `gradient`; no payment gateways — use `Place Order`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Prisma 8
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Contract at `src/prisma/contract.prisma`, emitted `contract.json` + `contract.d.ts`, client `src/prisma/db.ts` via `db.orm.public.*`. Config `prisma.config.ts` points to `src/prisma/contract.prisma`.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Seed: `prisma/seed.ts` (10 products).
