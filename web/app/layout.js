@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
 import { QueryProvider } from "@/components/providers/query-provider";
-import HeartIcon from "@/components/ui/heart";
 
 export const metadata = {
   title: "Mlimi Market — Farm Marketplace",
@@ -30,11 +30,7 @@ export default function RootLayout({ children }) {
         <QueryProvider>
           <Header />
           <div className="flex-1 flex flex-col">{children}</div>
-          <footer className="mt-8 border-t border-zinc-200 bg-white py-6">
-            <div className="mx-auto max-w-6xl px-4 text-center text-sm text-zinc-600">
-              © {new Date().getFullYear()} Mlimi Market. By Baluka Esther — with love <HeartIcon className="mx-1 align-middle" />. All terms reserved.
-            </div>
-          </footer>
+          <Footer />
         </QueryProvider>
       </body>
     </html>

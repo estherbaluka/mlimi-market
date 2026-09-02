@@ -63,7 +63,7 @@ export default async function AdminDashboard() {
     <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
       <div className="mx-auto max-w-6xl px-4 py-8">
         <h1 className="text-2xl font-semibold text-black">Admin Dashboard</h1>
-        <p className="mt-1 text-sm text-zinc-600">Welcome, {user.name || user.email} · Monitor marketplace activity. Solid colors only, no payments.</p>
+        <p className="mt-1 text-sm text-zinc-600">Welcome, <strong>{user.name || user.email}</strong> · Monitor marketplace activity.</p>
 
         <div className="mt-6 grid gap-4 md:grid-cols-4">
           <Card><p className="text-sm text-zinc-600">Users</p><p className="mt-1 text-2xl font-semibold text-black">{stats.users}</p><p className="text-xs text-zinc-500">{stats.farmers} farmers · {stats.buyers} buyers · {stats.admins} admins</p></Card>
@@ -81,16 +81,16 @@ export default async function AdminDashboard() {
             {users.length===0 ? <p className="mt-3 text-sm text-zinc-600">No users yet.</p> : (
               <div className="mt-4 overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead><tr className="text-left text-xs text-zinc-500 border-b border-zinc-200"><th className="py-2">Email</th><th>Role</th><th>Name</th></tr></thead>
+                  <thead><tr className="text-left text-xs text-zinc-500 border-b border-zinc-200"><th className="py-2">Email</th><th>Name</th><th>Role</th><th>Action</th></tr></thead>
                   <tbody>
                     {users.map((u)=>(
-                      <tr key={u.id} className="border-b border-zinc-100"><td className="py-2 text-black truncate max-w-[180px]">{u.email}</td><td><span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-black">{u.role}</span></td><td className="text-zinc-600">{u.name || "—"}</td></tr>
+                      <tr key={u.id} className="border-b border-zinc-100"><td className="py-2 text-black truncate max-w-[180px]">{u.email}</td><td className="text-zinc-600">{u.name || "—"}</td><td><span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-black">{u.role}</span></td><td className=""><button onClick="btn-error">Delete</td></tr>
                     ))}
                   </tbody>
                 </table>
               </div>
             )}
-            <p className="mt-3 text-xs text-zinc-500">Disable/remove users via direct DB moderation (no gradient badges).</p>
+            
           </Card>
 
           <Card>

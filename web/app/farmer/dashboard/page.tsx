@@ -11,7 +11,7 @@ export default async function FarmerDashboard() {
     <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
       <div className="max-w-5xl mx-auto px-4 py-10">
         <h1 className="text-2xl font-semibold text-black">Farmer Dashboard</h1>
-        <p className="mt-2 text-zinc-600">Welcome back, {user.name || user.email}.</p>
+        <p className="mt-2 text-zinc-600">Welcome back, <strong>{user.name || user.email}</strong>.</p>
 
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           <Card>

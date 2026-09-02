@@ -9,6 +9,7 @@ export async function Header() {
     <header className="sticky top-0 z-10 border-b border-zinc-200 bg-white">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
+        <span ><img src="/public/favicon.ico" alt="Logo"></img></span> 
           <span className="text-lg font-semibold tracking-tight text-black">
             Mlimi Market
           </span>
@@ -20,13 +21,7 @@ export async function Header() {
         <nav className="flex items-center gap-2">
           <Link href="/products" className="text-sm font-medium text-black hover:underline">Products</Link>
           {user ? (
-            <>
-              <span className="hidden sm:inline text-sm text-zinc-600">
-                {user.name || user.email}
-              </span>
-              <span className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white">
-                {user.role}
-              </span>
+            <>              
               {user.role === "BUYER" && (
                 <>
                   <Link href="/buyer/cart" className="text-sm font-medium text-black hover:underline">Cart</Link>
@@ -37,7 +32,7 @@ export async function Header() {
               )}
               {user.role === "FARMER" && (
                 <>
-                  <Link href="/farmer/products" className="text-sm font-medium text-black hover:underline">Products</Link>
+                  
                   <Link href="/farmer/orders" className="text-sm font-medium text-black hover:underline">Orders</Link>
                   <Link href="/farmer/messages" className="text-sm font-medium text-black hover:underline">Messages</Link>
                   <Link href="/farmer/dashboard" className="text-sm font-medium text-black hover:underline">Dashboard</Link>
@@ -46,6 +41,12 @@ export async function Header() {
               {user.role === "ADMIN" && (
                 <Link href="/admin/dashboard" className="text-sm font-medium text-black hover:underline">Dashboard</Link>
               )}
+              <span className="hidden sm:inline text-sm text-zinc-600">
+                {user.name || user.email}
+              </span>
+              <span className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white">
+                {user.role}
+              </span>
               <LogoutButton variant="outline" className="h-8 px-3 text-sm" />
             </>
           ) : (
