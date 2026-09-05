@@ -3,8 +3,7 @@
 > Fresh produce, direct from farmers. An MVP marketplace for Kayunga District, Uganda  
 [![Next.js](https://img.shields.io/badge/Next.js-16.3-black)](https://nextjs.org/)
 [![Prisma 8](https://img.shields.io/badge/Prisma-8-2D3748)](https://prisma.io/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)](https://www.typescriptlang.org/)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)](https://www.typescriptlang.org)
 
 Mlimi Market connects **farmers** who list agricultural produce with **buyers** who request orders. Farmers manage listings and fulfill requests; buyers browse, cart, and place orders without online payment. Built mobile-first with solid colors and flat design.
 
@@ -45,7 +44,7 @@ Mlimi Market connects **farmers** who list agricultural produce with **buyers** 
 | DB | PostgreSQL (Supabase pooler) + Prisma 8 (`@prisma/orm-postgres`, contract `src/prisma/contract.prisma`) |
 | Auth | `jose` JWT httpOnly cookie (`AUTH_SECRET`), `bcryptjs` |
 | State | Zustand (cart), TanStack Query 5 (server state, polling) |
-| Styling | Tailwind CSS 4, flat solid colors, `rounded-full` pills per `DESIGN.md` |
+| Styling | Tailwind CSS 4, flat solid colors|
 
 ---
 
@@ -162,11 +161,3 @@ Manual: register as BUYER/FARMER, add product as farmer, browse as buyer, add to
 - Root directory: `web`
 - Build command: `pnpm build` (or `next build --webpack`)
 - Env: `DATABASE_URL`, `AUTH_SECRET`, `NEXT_PUBLIC_APP_URL`
-
-No `STRIPE_*` etc. — project rejects payment env.
-
----
-
-## License
-
-MIT — see `LICENSE` (initial commit). Contributions welcome.
