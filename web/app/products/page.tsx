@@ -51,8 +51,7 @@ async function fetchProducts(params: Record<string, string | undefined>) {
         return { ...p, farmer, images } as Record<string, unknown>;
       })
     );
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    
     let filtered: any[] = enriched;
     if (q) filtered = filtered.filter((p) => String(p.title||"").toLowerCase().includes(q) || String(p.description||"").toLowerCase().includes(q) || String(p.category||"").toLowerCase().includes(q));
     if (category) filtered = filtered.filter((p) => String(p.category).toLowerCase() === category.toLowerCase());
@@ -84,14 +83,14 @@ export default async function ProductsPage({ searchParams }: SearchProps) {
   const units = ["kg", "sack", "basket", "piece", "litre", "dozen", "bundle"];
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
+    <div className="min-h-[calc(100vh-4rem)] bg-page">
       <div className="mx-auto max-w-6xl px-4 py-8">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-semibold tracking-tight text-black">Browse Products</h1>
-          <p className="text-sm text-zinc-600">Fresh produce from farmers across Kayunga. No online payment — place an order to request produce.</p>
+          <h1 className="text-3xl font-semibold tracking-tight text-text">Browse Products</h1>
+          <p className="text-sm text-muted">Fresh produce from farmers across Kayunga.</p>
         </div>
 
-        <form className="mt-6 rounded-xl border border-zinc-200 bg-white p-4">
+        <form className="mt-6 rounded-xl border border-border bg-card p-4">
           <div className="grid gap-4 md:grid-cols-12">
             <div className="md:col-span-4 space-y-1">
               <Label htmlFor="q">Search</Label>
@@ -125,8 +124,8 @@ export default async function ProductsPage({ searchParams }: SearchProps) {
               </Select>
             </div>
             <div className="md:col-span-2 flex items-end gap-2">
-              <button type="submit" className="h-10 w-full rounded-full bg-black px-6 text-sm font-medium text-white hover:bg-zinc-800">Apply</button>
-              <Link href="/products" className="h-10 rounded-full border border-zinc-200 bg-white px-6 text-sm font-medium text-black hover:bg-zinc-50 inline-flex items-center justify-center">Clear</Link>
+              <button type="submit" className="min-h-[44px] w-full rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-white hover:bg-primary-hover">Apply</button>
+              <Link href="/products" className="min-h-[44px] rounded-full border border-border bg-card px-6 py-2.5 text-sm font-medium text-text hover:bg-primary-soft inline-flex items-center justify-center">Clear</Link>
             </div>
           </div>
           <div className="mt-4 grid gap-4 md:grid-cols-4">
@@ -141,12 +140,12 @@ export default async function ProductsPage({ searchParams }: SearchProps) {
           </div>
         </form>
 
-        <div className="mt-4 text-sm text-zinc-600">{data.total ?? 0} product(s) found</div>
+        <div className="mt-4 text-sm text-muted">{data.total ?? 0} product(s) found</div>
 
         {products.length === 0 ? (
-          <div className="mt-8 rounded-xl border border-dashed border-zinc-300 bg-white p-12 text-center">
-            <p className="font-medium text-black">No products found.</p>
-            <p className="mt-1 text-sm text-zinc-600">Try adjusting your search or filters.</p>
+          <div className="mt-8 rounded-xl border border-dashed border-border bg-card p-12 text-center">
+            <p className="font-medium text-text">No products found.</p>
+            <p className="mt-1 text-sm text-muted">Try adjusting your search or filters.</p>
           </div>
         ) : (
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -162,7 +161,7 @@ export default async function ProductsPage({ searchParams }: SearchProps) {
               const qs = new URLSearchParams(params as Record<string,string>);
               qs.set("page", String(n));
               return (
-                <Link key={n} href={`/products?${qs.toString()}`} className={`h-9 min-w-9 rounded-full border px-4 inline-flex items-center justify-center text-sm font-medium ${String(params.page||"1")===String(n) ? "bg-black text-white border-black" : "bg-white text-black border-zinc-200 hover:bg-zinc-50"}`}>{n}</Link>
+                <Link key={n} href={`/products?${qs.toString()}`} className={`min-h-[44px] min-w-[44px] rounded-full border px-4 inline-flex items-center justify-center text-sm font-medium ${String(params.page||"1")===String(n) ? "bg-primary text-white border-primary" : "bg-card text-text border-border hover:bg-primary-soft"}`}>{n}</Link>
               );
             })}
           </div>

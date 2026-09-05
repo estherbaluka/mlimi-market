@@ -16,5 +16,5 @@ export function StartConversationButton({ farmerId, productId, label="Message fa
     } catch { alert("Something went wrong"); }
     setLoading(false);
   }
-  return <button onClick={start} disabled={loading} className="rounded-full border border-zinc-200 bg-white px-5 py-2.5 text-sm font-medium text-black hover:bg-zinc-50 disabled:opacity-50">{loading ? "..." : label}</button>;
+  return <button onClick={start} disabled={loading} className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-text hover:bg-primary-soft disabled:opacity-50">{loading ? "..." : label}</button>;
 }

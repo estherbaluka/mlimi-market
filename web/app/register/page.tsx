@@ -88,13 +88,13 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-[#fbfbf5] px-4 py-12">
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-page px-4 py-12">
       <div className="w-full max-w-xl">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-semibold tracking-tight text-black">
+          <h1 className="text-3xl font-semibold tracking-tight text-text">
             Create your account
           </h1>
-          <p className="mt-2 text-sm text-zinc-600">
+          <p className="mt-2 text-sm text-muted">
             Join Mlimi Market as a buyer or farmer
           </p>
         </div>
@@ -165,8 +165,8 @@ export default function RegisterPage() {
             </div>
 
             {role === "FARMER" && (
-              <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 space-y-4">
-                <p className="text-sm font-medium text-zinc-900">Farmer details</p>
+              <div className="rounded-lg border border-border bg-primary-soft p-4 space-y-4">
+                <p className="text-sm font-medium text-text">Farmer details</p>
                 <div className="space-y-2">
                   <Label htmlFor="farmName">Farm name</Label>
                   <Input id="farmName" placeholder="Green Valley Farm" {...register("farmName")} />
@@ -193,9 +193,9 @@ export default function RegisterPage() {
             </Button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-zinc-600">
+          <p className="mt-6 text-center text-sm text-muted">
             Already have an account?{" "}
-            <Link href="/login" className="font-medium text-black hover:underline">
+            <Link href="/login" className="font-medium text-text hover:underline">
               Sign in
             </Link>
           </p>

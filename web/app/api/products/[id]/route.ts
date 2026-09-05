@@ -62,25 +62,24 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     if (!parsed.success) return NextResponse.json({ error: "Validation failed", details: parsed.error.flatten().fieldErrors }, { status: 400 });
 
     const data = parsed.data;
+    // Separate relation data (images) from product columns
+    const { images: imageUrls, ...rest } = data;
     // Build update payload removing undefined
     const payload: Record<string, unknown> = {};
-    for (const [k,v] of Object.entries(data)) if (v !== undefined) payload[k] = v;
+    for (const [k,v] of Object.entries(rest)) if (v !== undefined) payload[k] = v;
 
     if (Object.keys(payload).length > 0) {
       await db.orm.public.Product.where({ id: productId }).update(payload as never);
-      // Handle images if provided
-      if (payload.images && Array.isArray(payload.images)) {
-        const urls = payload.images as string[];
-        // simplistic: delete old and recreate
-        try {
-          const old = await db.orm.public.ProductImage.where({ productId }).select("id").all();
-          for (const im of old as unknown as Array<{ id:number }>) {
-            await db.orm.public.ProductImage.where({ id: im.id }).delete();
-          }
-          for (let i=0;i<urls.length;i++) {
-            await db.orm.public.ProductImage.create({ productId, url: urls[i], alt: String(payload.title || "product"), isPrimary: i===0 });
-          }
-        } catch {}
+    }
+    // Handle images if provided (replace all + recreate)
+    if (imageUrls !== undefined && Array.isArray(imageUrls)) {
+      const urls = imageUrls as string[];
+      const old = await db.orm.public.ProductImage.where({ productId }).select("id").all();
+      for (const im of old as unknown as Array<{ id:number }>) {
+        await db.orm.public.ProductImage.where({ id: im.id }).delete();
+      }
+      for (let i=0;i<urls.length;i++) {
+        await db.orm.public.ProductImage.create({ productId, url: urls[i], alt: String(data.title || "product"), isPrimary: i===0 });
       }
     }
 

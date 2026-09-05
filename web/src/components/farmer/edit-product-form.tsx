@@ -2,11 +2,12 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Input, Label, Select, Textarea } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ImageUploader } from "@/components/products/image-uploader";
 
 const schema = z.object({
   title: z.string().trim().min(3, "Product title is required"),
@@ -17,19 +18,19 @@ const schema = z.object({
   unit: z.string().trim().min(1, "Unit is required"),
   stockQuantity: z.coerce.number().int().min(0, "Stock cannot be negative"),
   status: z.enum(["ACTIVE","HIDDEN","SOLD_OUT"]),
-  imageUrl: z.string().trim().url("Invalid URL").optional().or(z.literal("")),
+  images: z.array(z.string().min(1)).max(5, "At most 5 images allowed").min(1, "At least one product image is required"),
 });
 type FormValues = z.infer<typeof schema>;
 
-export function EditProductForm({ product }: { product: { id:number; title:string; description:string|null; category:string; price:number; currency:string; unit:string; stockQuantity:number; status:string; imageUrl:string } }) {
+export function EditProductForm({ product }: { product: { id:number; title:string; description:string|null; category:string; price:number; currency:string; unit:string; stockQuantity:number; status:string; images:string[] } }) {
   const router = useRouter();
   const [serverError, setServerError] = useState<string|null>(null);
-  const { register, handleSubmit, formState:{ errors, isSubmitting } } = useForm<FormValues>({ resolver: zodResolver(schema), defaultValues:{ title: product.title, description: product.description||"", category: product.category, price: product.price, currency: product.currency, unit: product.unit, stockQuantity: product.stockQuantity, status: product.status as FormValues["status"], imageUrl: product.imageUrl }});
+  const { register, handleSubmit, control, formState:{ errors, isSubmitting } } = useForm<FormValues>({ resolver: zodResolver(schema), defaultValues:{ title: product.title, description: product.description||"", category: product.category, price: product.price, currency: product.currency, unit: product.unit, stockQuantity: product.stockQuantity, status: product.status as FormValues["status"], images: product.images }});
 
   async function onSubmit(values: FormValues) {
     setServerError(null);
     try {
-      const res = await fetch(`/api/products/${product.id}`, { method:"PATCH", headers:{ "Content-Type":"application/json"}, body: JSON.stringify({ ...values, images: values.imageUrl ? [values.imageUrl] : [] })});
+      const res = await fetch(`/api/products/${product.id}`, { method:"PATCH", headers:{ "Content-Type":"application/json"}, body: JSON.stringify(values)});
       const data = await res.json();
       if (!res.ok) {
         if (data.details) { const first = Object.values(data.details).flat()[0] as string|undefined; setServerError(first || data.error); } else setServerError(data.error || "Update failed");
@@ -54,7 +55,15 @@ export function EditProductForm({ product }: { product: { id:number; title:strin
       </div>
       <div className="space-y-2"><Label htmlFor="status">Status</Label><Select id="status" {...register("status")}><option value="ACTIVE">ACTIVE</option><option value="HIDDEN">HIDDEN</option><option value="SOLD_OUT">SOLD_OUT</option></Select></div>
       <div className="space-y-2"><Label htmlFor="description">Description</Label><Textarea id="description" {...register("description")} /></div>
-      <div className="space-y-2"><Label htmlFor="imageUrl">Image URL</Label><Input id="imageUrl" {...register("imageUrl")} />{errors.imageUrl && <p className="text-sm text-red-600">{errors.imageUrl.message}</p>}</div>
+      <div className="space-y-2">
+        <Label htmlFor="product-images">Product images (required)</Label>
+        <Controller
+          control={control}
+          name="images"
+          render={({ field }) => <ImageUploader value={field.value || []} onChange={field.onChange} />}
+        />
+        {errors.images && <p className="text-sm text-red-600">{errors.images.message}</p>}
+      </div>
       <Button type="submit" disabled={isSubmitting} size="lg" className="w-full">{isSubmitting ? "Saving..." : "Save Changes"}</Button>
     </form>
   );

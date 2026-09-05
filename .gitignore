@@ -34,3 +34,6 @@ pnpm-debug.log*
 web/node_modules/
 web/.next/
 web/dist/
+
+AGENTS.md
+docs/

@@ -6,7 +6,7 @@ import { db } from "@/prisma/db";
 import { Card } from "@/components/ui/card";
 
 const statusColors: Record<string,string> = {
-  SUBMITTED:"bg-zinc-100 text-black",
+  SUBMITTED:"bg-primary-soft text-text",
   ACCEPTED:"bg-green-100 text-green-800",
   REJECTED:"bg-red-100 text-red-700",
   PREPARING:"bg-amber-100 text-amber-800",
@@ -49,40 +49,40 @@ export default async function FarmerOrdersPage({ searchParams }: { searchParams:
   } catch (e){ console.error(e); }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
+    <div className="min-h-[calc(100vh-4rem)] bg-page">
       <div className="mx-auto max-w-6xl px-4 py-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-semibold text-black">Order Requests</h1>
-            <p className="mt-1 text-sm text-zinc-600">Orders containing your products. Update status as you prepare.</p>
+            <h1 className="text-2xl font-semibold text-text">Order Requests</h1>
+            <p className="mt-1 text-sm text-muted">Orders containing your products. Update status as you prepare.</p>
           </div>
           <form className="flex gap-2">
-            <select name="status" defaultValue={filterStatus} className="h-10 rounded-md border border-zinc-200 bg-white px-3 text-sm">
+            <select name="status" defaultValue={filterStatus} className="min-h-[44px] rounded-md border border-border bg-card px-4 py-2.5 text-base text-text">
               <option value="">All statuses</option>
               {Object.keys(statusColors).map((s)=>(<option key={s} value={s}>{s}</option>))}
             </select>
-            <button type="submit" className="h-10 rounded-full bg-black px-6 text-sm font-medium text-white">Filter</button>
+            <button type="submit" className="min-h-[44px] rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-white hover:bg-primary-hover">Filter</button>
           </form>
         </div>
 
         {orders.length===0 ? (
-          <Card className="mt-6 text-center"><p className="font-medium text-black">No order requests.</p><p className="mt-1 text-sm text-zinc-600">When buyers order your produce, they will appear here.</p></Card>
+          <Card className="mt-6 text-center"><p className="font-medium text-text">No order requests.</p><p className="mt-1 text-sm text-muted">When buyers order your produce, they will appear here.</p></Card>
         ) : (
           <div className="mt-6 space-y-4">
             {orders.map((o)=>(
               <Card key={o.id} className="p-4">
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                   <div>
-                    <p className="font-medium text-black">Order #{o.id} · {o.buyerName || o.buyerEmail}</p>
-                    <p className="text-xs text-zinc-500">{new Date(o.createdAt).toLocaleString()} · {o.deliveryMethod}</p>
-                    <ul className="mt-2 space-y-1 text-sm text-zinc-700">
+                    <p className="font-medium text-text">Order #{o.id} · {o.buyerName || o.buyerEmail}</p>
+                    <p className="text-xs text-muted">{new Date(o.createdAt).toLocaleString()} · {o.deliveryMethod}</p>
+                    <ul className="mt-2 space-y-1 text-sm text-text">
                       {o.items.map((it,i)=>(<li key={i}>{it.productNameSnapshot} — {it.quantity} {it.unit}</li>))}
                     </ul>
-                    <p className="mt-2 text-sm font-semibold text-black">{o.totalAmount.toLocaleString()} {o.currency}</p>
+                    <p className="mt-2 text-sm font-semibold text-text">{o.totalAmount.toLocaleString()} {o.currency}</p>
                   </div>
                   <div className="flex flex-col items-start sm:items-end gap-3">
-                    <span className={`rounded-full px-3 py-1 text-xs font-medium ${statusColors[o.status] || "bg-zinc-100"}`}>{o.status}</span>
-                    <Link href={`/farmer/orders/${o.id}`} className="rounded-full border border-zinc-200 bg-white px-5 py-2 text-sm font-medium text-black hover:bg-zinc-50">View order</Link>
+                    <span className={`rounded-full px-3 py-1 text-xs font-medium ${statusColors[o.status] || "bg-primary-soft"}`}>{o.status}</span>
+                    <Link href={`/farmer/orders/${o.id}`} className="rounded-full border border-border bg-card px-5 py-2 text-sm font-medium text-text hover:bg-primary-soft">View order</Link>
                   </div>
                 </div>
               </Card>

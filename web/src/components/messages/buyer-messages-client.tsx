@@ -7,11 +7,11 @@ export function BuyerMessagesClient({ currentUserId, initialConversationId, role
   const [selected, setSelected] = useState<number|null>(initialConversationId);
   return (
     <div className="grid md:grid-cols-[360px_1fr] h-[560px]">
-      <div className="border-r border-zinc-200 overflow-y-auto bg-white">
+      <div className="border-r border-border overflow-y-auto bg-card">
         <ConversationList selectedId={selected} onSelect={setSelected} role={role} />
       </div>
-      <div className="flex flex-col bg-[#fbfbf5]">
-        {selected ? <MessageThread conversationId={selected} currentUserId={currentUserId} /> : <div className="flex flex-1 items-center justify-center p-8 text-sm text-zinc-600">Select a conversation</div>}
+      <div className="flex flex-col bg-page">
+        {selected ? <MessageThread conversationId={selected} currentUserId={currentUserId} /> : <div className="flex flex-1 items-center justify-center p-8 text-sm text-muted">Select a conversation</div>}
       </div>
     </div>
   );

@@ -28,14 +28,14 @@ export function FarmerOrderActions({ orderId, currentStatus }: { orderId:number;
     setLoading(null);
   }
 
-  if (actions.length===0) return <p className="text-sm text-zinc-600">No further actions. Status is terminal: {currentStatus}</p>;
+  if (actions.length===0) return <p className="text-sm text-muted">No further actions. Status is terminal: {currentStatus}</p>;
 
   return (
     <div className="space-y-3">
       {error && <div className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
       <div className="flex flex-wrap gap-2">
         {actions.map((a)=>(
-          <button key={a.status} disabled={!!loading} onClick={()=>update(a.status, a.status==="REJECTED" ? "Reject this order?" : undefined)} className={`rounded-full px-5 py-2 text-sm font-medium ${a.variant==="primary" ? "bg-black text-white hover:bg-zinc-800 disabled:opacity-50" : a.variant==="danger" ? "border border-red-200 bg-white text-red-600 hover:bg-red-50" : "border border-zinc-200 bg-white text-black hover:bg-zinc-50"} disabled:opacity-50`}>
+          <button key={a.status} disabled={!!loading} onClick={()=>update(a.status, a.status==="REJECTED" ? "Reject this order?" : undefined)} className={`rounded-full px-5 py-2 text-sm font-medium ${a.variant==="primary" ? "bg-primary text-white hover:bg-primary-hover disabled:opacity-50" : a.variant==="danger" ? "border border-red-200 bg-card text-red-600 hover:bg-red-50" : "border border-border bg-card text-text hover:bg-primary-soft"} disabled:opacity-50`}>
             {loading===a.status ? "Updating..." : a.label}
           </button>
         ))}

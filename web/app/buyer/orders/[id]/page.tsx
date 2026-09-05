@@ -25,25 +25,25 @@ export default async function BuyerOrderDetailPage({ params }: { params: Promise
   if (!order) notFound();
   const canCancel = ["SUBMITTED","ACCEPTED"].includes(order.status as string);
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
+    <div className="min-h-[calc(100vh-4rem)] bg-page">
       <div className="mx-auto max-w-3xl px-4 py-8">
-        <Link href="/buyer/orders" className="text-sm font-medium text-black hover:underline">← Back to orders</Link>
+        <Link href="/buyer/orders" className="text-sm font-medium text-text hover:underline">← Back to orders</Link>
         <div className="mt-4 flex items-start justify-between">
-          <h1 className="text-2xl font-semibold text-black">Order #{order.id as number}</h1>
-          <span className="rounded-full bg-zinc-900 px-3 py-1 text-xs font-medium text-white">{order.status as string}</span>
+          <h1 className="text-2xl font-semibold text-text">Order #{order.id as number}</h1>
+          <span className="rounded-full bg-primary px-3 py-1 text-xs font-medium text-white">{order.status as string}</span>
         </div>
-        <p className="mt-1 text-sm text-zinc-600">{new Date(String(order.createdAt)).toLocaleString()} · {order.deliveryMethod as string}</p>
+        <p className="mt-1 text-sm text-muted">{new Date(String(order.createdAt)).toLocaleString()} · {order.deliveryMethod as string}</p>
         <Card className="mt-6">
-          <h2 className="font-medium text-black">Items</h2>
-          <ul className="mt-3 divide-y divide-zinc-200">
+          <h2 className="font-medium text-text">Items</h2>
+          <ul className="mt-3 divide-y divide-border">
             {items.map((it,i)=>(<li key={i} className="flex justify-between py-2 text-sm"><span>{it.productNameSnapshot as string} · {it.quantity as number} {it.unit as string}</span><span className="font-medium">{((it.unitPriceSnapshot as number)*(it.quantity as number)).toLocaleString()} UGX</span></li>))}
           </ul>
           <div className="mt-3 flex justify-between font-semibold"><span>Total</span><span>{(order.totalAmount as number).toLocaleString()} {(order.currency as string)}</span></div>
         </Card>
         <Card className="mt-6">
-          <h2 className="font-medium text-black">Delivery</h2>
-          {order.deliveryMethod === "DELIVERY" ? <p className="mt-1 text-sm text-zinc-700">{order.deliveryAddress as string}</p> : <p className="mt-1 text-sm text-zinc-700">{order.pickupLocation as string}</p>}
-          {order.buyerNote && <p className="mt-2 text-sm text-zinc-600">Note: {order.buyerNote as string}</p>}
+          <h2 className="font-medium text-text">Delivery</h2>
+          {order.deliveryMethod === "DELIVERY" ? <p className="mt-1 text-sm text-text">{order.deliveryAddress as string}</p> : <p className="mt-1 text-sm text-text">{order.pickupLocation as string}</p>}
+          {order.buyerNote && <p className="mt-2 text-sm text-muted">Note: {order.buyerNote as string}</p>}
         </Card>
         {canCancel && (
           <Card className="mt-6">

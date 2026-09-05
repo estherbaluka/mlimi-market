@@ -33,16 +33,16 @@ export function FarmerProductActions({ product }: { product: { id:number; status
   return (
     <>
       {product.status === "ACTIVE" ? (
-        <button disabled={!!loading} onClick={()=>patch({ status:"HIDDEN"})} className="rounded-full border border-zinc-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:bg-zinc-50 disabled:opacity-50">Hide</button>
+        <button disabled={!!loading} onClick={()=>patch({ status:"HIDDEN"})} className="rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium text-text hover:bg-primary-soft disabled:opacity-50">Hide</button>
       ) : product.status === "HIDDEN" ? (
-        <button disabled={!!loading} onClick={()=>patch({ status:"ACTIVE"})} className="rounded-full bg-black px-4 py-1.5 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50">Show</button>
+        <button disabled={!!loading} onClick={()=>patch({ status:"ACTIVE"})} className="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-white hover:bg-primary-hover disabled:opacity-50">Show</button>
       ) : null}
       {product.status !== "SOLD_OUT" ? (
         <button disabled={!!loading} onClick={()=>patch({ status:"SOLD_OUT" }, "Mark as sold out?")} className="rounded-full border border-amber-200 bg-amber-50 px-4 py-1.5 text-sm font-medium text-amber-800 hover:bg-amber-100 disabled:opacity-50">Sold out</button>
       ) : (
-        <button disabled={!!loading} onClick={()=>patch({ status:"ACTIVE"})} className="rounded-full border border-zinc-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:bg-zinc-50 disabled:opacity-50">Restock</button>
+        <button disabled={!!loading} onClick={()=>patch({ status:"ACTIVE"})} className="rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium text-text hover:bg-primary-soft disabled:opacity-50">Restock</button>
       )}
-      <button disabled={!!loading} onClick={del} className="rounded-full border border-red-200 bg-white px-4 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 disabled:opacity-50">Delete</button>
+      <button disabled={!!loading} onClick={del} className="rounded-full border border-red-200 bg-card px-4 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 disabled:opacity-50">Delete</button>
     </>
   );
 }

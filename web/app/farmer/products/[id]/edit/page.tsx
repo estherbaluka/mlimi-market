@@ -20,24 +20,24 @@ export default async function EditProductPage({ params }: { params: Promise<{ id
     const p = rows[0] as unknown as Record<string,unknown>|undefined;
     if (!p) notFound();
     if (p.farmerId !== user.id) redirect("/farmer/products");
-    let imageUrl = "";
+    let images: string[] = [];
     try {
       const imgs = await db.orm.public.ProductImage.where({ productId }).select("url").all() as unknown as Array<{ url:string }>;
-      imageUrl = imgs[0]?.url || "";
+      images = imgs.map((i) => i.url).filter(Boolean);
     } catch {}
-    product = { ...p, imageUrl };
+    product = { ...p, images };
   } catch { notFound(); }
 
   if (!product) notFound();
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
+    <div className="min-h-[calc(100vh-4rem)] bg-page">
       <div className="mx-auto max-w-2xl px-4 py-8">
-        <Link href="/farmer/products" className="text-sm font-medium text-black hover:underline">← Back to products</Link>
-        <h1 className="mt-4 text-2xl font-semibold text-black">Edit Product</h1>
-        <p className="mt-1 text-sm text-zinc-600">Update your listing.</p>
+        <Link href="/farmer/products" className="text-sm font-medium text-text hover:underline">← Back to products</Link>
+        <h1 className="mt-4 text-2xl font-semibold text-text">Edit Product</h1>
+        <p className="mt-1 text-sm text-muted">Update your listing.</p>
         <Card className="mt-6">
-          <EditProductForm product={product as { id:number; title:string; description:string|null; category:string; price:number; currency:string; unit:string; stockQuantity:number; status:string; imageUrl:string }} />
+          <EditProductForm product={product as { id:number; title:string; description:string|null; category:string; price:number; currency:string; unit:string; stockQuantity:number; status:string; images:string[] }} />
         </Card>
       </div>
     </div>

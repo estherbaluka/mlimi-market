@@ -31,24 +31,24 @@ export function MessageThread({ conversationId, currentUserId }: Props) {
     onError: (e: Error) => setError(e.message),
   });
 
-  if (isLoading) return <div className="p-4 text-sm text-zinc-600">Loading messages...</div>;
+  if (isLoading) return <div className="p-4 text-sm text-muted">Loading messages...</div>;
   const messages = data?.messages || [];
 
   return (
     <div className="flex h-full flex-col">
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
-        {messages.length===0 ? <p className="text-sm text-zinc-600 text-center py-8">No messages yet. Say hello!</p> : messages.map((m)=>(
-          <div key={m.id} className={`max-w-[75%] rounded-2xl px-4 py-2 text-sm ${m.senderId===currentUserId ? "ml-auto bg-black text-white" : "bg-zinc-100 text-black"}`}>
+        {messages.length===0 ? <p className="text-sm text-muted text-center py-8">No messages yet. Say hello!</p> : messages.map((m)=>(
+          <div key={m.id} className={`max-w-[75%] rounded-2xl px-4 py-2 text-sm ${m.senderId===currentUserId ? "ml-auto bg-primary text-white" : "bg-primary-soft text-text"}`}>
             <p>{m.body}</p>
-            <p className={`mt-1 text-xs ${m.senderId===currentUserId ? "text-zinc-300" : "text-zinc-500"}`}>{new Date(m.createdAt).toLocaleTimeString([], { hour:"2-digit", minute:"2-digit"})}</p>
+            <p className={`mt-1 text-xs ${m.senderId===currentUserId ? "text-white/70" : "text-muted"}`}>{new Date(m.createdAt).toLocaleTimeString([], { hour:"2-digit", minute:"2-digit"})}</p>
           </div>
         ))}
       </div>
-      <form onSubmit={(e)=>{ e.preventDefault(); if (!body.trim()) { setError("Message cannot be empty"); return; } send.mutate(body); }} className="border-t border-zinc-200 bg-white p-3">
+      <form onSubmit={(e)=>{ e.preventDefault(); if (!body.trim()) { setError("Message cannot be empty"); return; } send.mutate(body); }} className="border-t border-border bg-card p-3">
         {error && <p className="mb-2 text-sm text-red-600">{error}</p>}
         <div className="flex gap-2">
-          <input value={body} onChange={(e)=>setBody(e.target.value)} placeholder="Type a message..." className="flex-1 rounded-full border border-zinc-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black" />
-          <button type="submit" disabled={send.isPending} className="rounded-full bg-black px-6 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50">{send.isPending ? "..." : "Send"}</button>
+          <input value={body} onChange={(e)=>setBody(e.target.value)} placeholder="Type a message..." className="flex-1 rounded-full border border-border bg-card px-4 py-2.5 text-base text-text focus:outline-none focus:ring-2 focus:ring-primary min-h-[44px]" />
+          <button type="submit" disabled={send.isPending} className="rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-white hover:bg-primary-hover disabled:opacity-50 min-h-[44px]">{send.isPending ? "..." : "Send"}</button>
         </div>
       </form>
     </div>

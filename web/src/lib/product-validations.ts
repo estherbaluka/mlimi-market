@@ -23,7 +23,7 @@ export const createProductSchema = z.object({
   unit: z.string().trim().min(1, "Unit is required"),
   stockQuantity: z.number().int().min(0, "Stock cannot be negative"),
   status: z.enum(["ACTIVE", "HIDDEN", "SOLD_OUT"]).default("ACTIVE"),
-  images: z.array(z.string().url("Invalid image URL")).max(5).optional().default([]),
+  images: z.array(z.string().min(1, "Invalid image")).max(5, "At most 5 images allowed").min(1, "At least one product image is required"),
 });
 
 export const updateProductSchema = createProductSchema.partial();

@@ -82,7 +82,7 @@ model Product {
   description   String?
   category      String
   price         Int
-  currency      String        @default("MWK")
+  currency      String        @default("UGX")
   unit          String
   stockQuantity Int           @default(0)
   status        ProductStatus @default(ACTIVE)
@@ -120,7 +120,7 @@ model Order {
   pickupLocation  String?
   buyerNote       String?
   totalAmount     Int            @default(0)
-  currency        String         @default("MWK")
+  currency        String         @default("UGX")
   createdAt       TimestamptzString @default(now())
   updatedAt       temporal.updatedAtString()
 

@@ -12,8 +12,8 @@ importers:
         specifier: ^5.9.1
         version: 5.9.1(@standard-schema/spec@1.1.0)(arktype@2.2.3)(effect@4.0.0-rc.112)(react-hook-form@7.86.0(react@19.2.8))(typanion@3.14.0)(valibot@1.2.0(typescript@6.0.3))(zod@4.4.3)
       '@prisma/orm-postgres':
-        specifier: ^8.0.0-rc.12
-        version: 8.0.0-rc.8-dev.4(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
+        specifier: ^8.0.0-rc.8-dev.13
+        version: 8.0.0-rc.8-dev.13(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
       '@tanstack/react-query':
         specifier: ^5.102.8
         version: 5.102.8(react@19.2.8)
@@ -73,8 +73,8 @@ importers:
         specifier: 16.3.3
         version: 16.3.3(@typescript-eslint/parser@8.68.0(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
       prisma:
-        specifier: ^8.0.0-rc.12
-        version: 8.0.0-rc.12(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(supports-color@7.2.0)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)
+        specifier: ^8.0.0-rc.13
+        version: 8.0.0-rc.13(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(supports-color@7.2.0)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)
       tailwindcss:
         specifier: ^4
         version: 4.3.3
@@ -1189,15 +1189,15 @@ packages:
     peerDependencies:
       '@prisma/management-api-sdk': ^1.55.0
 
-  '@prisma/composer-cli@0.16.0':
-    resolution: {integrity: sha512-JuVokK1tpR+SlVJu4OAlJck+94EgJXWx54J6QiDxBtqvHRDJLt9iEzhFa/mshjpDwQoNwQeiHh3Cjb4O+lXqPQ==}
+  '@prisma/composer-cli@0.17.0':
+    resolution: {integrity: sha512-I7dNTDtVH6hoUlExxZUfu0iIQuT17i2xcPiTv58atunkn777wYJLOJ/lvO0LsOYcYGbItGkG3F7R36dZNf4HsQ==}
     engines: {node: '>=22.18.0'}
     hasBin: true
     peerDependencies:
       '@prisma/cli-engine': 0.3.0
 
-  '@prisma/composer@0.16.0':
-    resolution: {integrity: sha512-cT5Qll+H3aZaxCi2KO4s0z23De9y4JsrLtzz3MLvFTA10jRPX4Qobyv3TG3E8SeTklebu6IkMcrKHWHUQyLWFg==}
+  '@prisma/composer@0.17.0':
+    resolution: {integrity: sha512-JySMDC1q1KzU1tbE0s6ZPDRlbTed5maQ2jNYzvQ6/a0MNgEwfTPQAjB80rD5SxHTEczsHmVB2rnr/g0+JHPagA==}
     engines: {node: '>=22.18.0'}
 
   '@prisma/compute-sdk@0.42.0':
@@ -1218,8 +1218,8 @@ packages:
   '@prisma/management-api-sdk@1.69.0':
     resolution: {integrity: sha512-z3zBWvOjFSWqUwkJcsdkBZzkUaUMEEcKy4QiMfo7n1GqNQvRYkzxzaNRTqmxTjw3thOjmdq+UegIqOU57i7jiA==}
 
-  '@prisma/orm-family-sql@8.0.0-rc.8-dev.4':
-    resolution: {integrity: sha512-s1yU0gvAMMmljHrGM/eQGs9U6K3J8/5Aq/3h18cwm1fnLIsgj1cZKRR1PUN9hTD+xpSjILHPtxvwuT/GMlkD9g==}
+  '@prisma/orm-family-sql@8.0.0-rc.8-dev.13':
+    resolution: {integrity: sha512-HXTCh5etFwqV/B9RV7sxoiVtRBRNxAtKs8W4hS94XcIgKlRax241b+z+mWMWzAjxPFwF6iyfdbV5Mvz/wrh8rA==}
     peerDependencies:
       typescript: '>=5.9'
     peerDependenciesMeta:
@@ -1234,24 +1234,24 @@ packages:
       typescript:
         optional: true
 
-  '@prisma/orm-framework@8.0.0-rc.8-dev.4':
-    resolution: {integrity: sha512-N986gUOh4NkiGP0O66hg8xmdiVaztMO/fbSIwqshzwwWIIp8yWoyXqZ58XU1pP53cPtm1Ftj6+OHjhrmHog51Q==}
+  '@prisma/orm-framework@8.0.0-rc.8-dev.13':
+    resolution: {integrity: sha512-TdhOxPuCQAwQuXiR5a5LgmaZ409xQ5Q64dWGA4gZa7WqwnVKcafaggqJw0JM5ipKoqB2bq0kBZBZhtYoVRrZPA==}
     peerDependencies:
       typescript: '>=5.9'
     peerDependenciesMeta:
       typescript:
         optional: true
 
-  '@prisma/orm-postgres@8.0.0-rc.8-dev.4':
-    resolution: {integrity: sha512-1TLr+FfWPdx5P2idVIgvsKNhK+qbnt8/JMYra1CGHxye7OzcvaFy1EJK3rKOuaGzoGBRo5ca751JBRacXAa8UA==}
+  '@prisma/orm-postgres@8.0.0-rc.8-dev.13':
+    resolution: {integrity: sha512-JJnuESEjhjW/gk3p6BbAhdIAF7DGsegWszA9qkA9qi683zQJK6msChtJs/Y+I8FSlTfO77JLgC5calra8oThUw==}
     peerDependencies:
       typescript: '>=5.9'
     peerDependenciesMeta:
       typescript:
         optional: true
 
-  '@prisma/orm-target-postgres@8.0.0-rc.8-dev.4':
-    resolution: {integrity: sha512-OWl9ubT6MkGQuQEUv5hujlNBPNDkjsnwqhW/0EJqvbrGpcZo7Df93twaPE2luDF8FoTIrKOvaPbuPpT7Hc5nOg==}
+  '@prisma/orm-target-postgres@8.0.0-rc.8-dev.13':
+    resolution: {integrity: sha512-MGUIVcmR/ZL9j0OlZtlbvoT2DE/nASsE4tO5aY5R8frxhPyZv5hMBbimzG5ShFr1AJyLuOFOHvKMSHVE00w3lQ==}
     peerDependencies:
       typescript: '>=5.9'
     peerDependenciesMeta:
@@ -1270,8 +1270,8 @@ packages:
       vite:
         optional: true
 
-  '@prisma/orm-toolchain@8.0.0-rc.8-dev.4':
-    resolution: {integrity: sha512-rRUkEx+ZJZSS6CsH25aqAokuVJ8FPhnTU0siB27VcBa/dbEV8E2xzgsHlgfpdAqNNuz/1UjVAGSedfQF0QK4nA==}
+  '@prisma/orm-toolchain@8.0.0-rc.8-dev.13':
+    resolution: {integrity: sha512-YWn0ynTqY8edkk/EWyMb1XZe21Xl5oShYjcj2lG8ugHY+svrpD9HP1xCV7iDdHKUmVxMNUreZdzwUQ2Q6ob6/g==}
     peerDependencies:
       '@prisma/cli-engine': 0.3.0
       typescript: '>=5.9'
@@ -3670,8 +3670,8 @@ packages:
     resolution: {integrity: sha512-gjVS5hOP+M3wMm5nmNOucbIrqudzs9v/57bWRHQWLYklXqoXKrVfYW2W9+glfGsqtPgpiz5WwyEEB+ksXIx3gQ==}
     engines: {node: '>=18'}
 
-  prisma@8.0.0-rc.12:
-    resolution: {integrity: sha512-a+o+2lMsUeBl2Fm+DduUrXuHcU7DaI6EO3YmEDa4kVyS2LYVj9hSwl1tcpx4It/fMYq7mQiGaibVL+rIYFjAvQ==}
+  prisma@8.0.0-rc.13:
+    resolution: {integrity: sha512-wemarrP3RtLUThfJr8sfkdlqKO8zG/wQW83NdcRo9sC+HlBqtQ4s3faa372uzk2e5K/giXeMadGWLTrc2jmFbA==}
     engines: {node: '>=22.18.0'}
     hasBin: true
 
@@ -5435,12 +5435,13 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@prisma/composer-cli@0.16.0(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)':
+  '@prisma/composer-cli@0.17.0(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)':
     dependencies:
       '@prisma/cli-engine': 0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4)
-      '@prisma/composer': 0.16.0(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)
+      '@prisma/composer': 0.17.0(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)
       alchemy: 2.0.0-beta.74(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(effect@4.0.0-rc.112)(pg@8.22.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)
       c12: 3.3.4(magicast@0.5.4)
+      cross-spawn: 7.0.6
       effect: 4.0.0-rc.112
       esbuild: 0.28.2
     transitivePeerDependencies:
@@ -5468,7 +5469,7 @@ snapshots:
       - vitest
       - ws
 
-  '@prisma/composer@0.16.0(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)':
+  '@prisma/composer@0.17.0(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)':
     dependencies:
       '@effect/sql-d1': 4.0.0-rc.112(effect@4.0.0-rc.112)
       '@effect/sql-sqlite-do': 4.0.0-rc.112(effect@4.0.0-rc.112)
@@ -5477,6 +5478,7 @@ snapshots:
       alchemy: 2.0.0-beta.74(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(effect@4.0.0-rc.112)(pg@8.22.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)
       arktype: 2.2.3
       c12: 3.3.4(magicast@0.5.4)
+      cross-spawn: 7.0.6
       effect: 4.0.0-rc.112
       esbuild: 0.28.2
     transitivePeerDependencies:
@@ -5558,10 +5560,10 @@ snapshots:
     dependencies:
       openapi-fetch: 0.14.0
 
-  '@prisma/orm-family-sql@8.0.0-rc.8-dev.4(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))':
+  '@prisma/orm-family-sql@8.0.0-rc.8-dev.13(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))':
     dependencies:
-      '@prisma/orm-framework': 8.0.0-rc.8-dev.4(typescript@6.0.3)
-      '@prisma/orm-toolchain': 8.0.0-rc.8-dev.4(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
+      '@prisma/orm-framework': 8.0.0-rc.8-dev.13(typescript@6.0.3)
+      '@prisma/orm-toolchain': 8.0.0-rc.8-dev.13(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
       '@standard-schema/spec': 1.1.0
       arktype: 2.2.3
       pathe: 2.0.3
@@ -5584,7 +5586,7 @@ snapshots:
     optionalDependencies:
       typescript: 6.0.3
 
-  '@prisma/orm-framework@8.0.0-rc.8-dev.4(typescript@6.0.3)':
+  '@prisma/orm-framework@8.0.0-rc.8-dev.13(typescript@6.0.3)':
     dependencies:
       '@standard-schema/spec': 1.1.0
       arktype: 2.2.3
@@ -5593,12 +5595,12 @@ snapshots:
     optionalDependencies:
       typescript: 6.0.3
 
-  '@prisma/orm-postgres@8.0.0-rc.8-dev.4(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))':
+  '@prisma/orm-postgres@8.0.0-rc.8-dev.13(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))':
     dependencies:
-      '@prisma/orm-family-sql': 8.0.0-rc.8-dev.4(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
-      '@prisma/orm-framework': 8.0.0-rc.8-dev.4(typescript@6.0.3)
-      '@prisma/orm-target-postgres': 8.0.0-rc.8-dev.4(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
-      '@prisma/orm-toolchain': 8.0.0-rc.8-dev.4(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
+      '@prisma/orm-family-sql': 8.0.0-rc.8-dev.13(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
+      '@prisma/orm-framework': 8.0.0-rc.8-dev.13(typescript@6.0.3)
+      '@prisma/orm-target-postgres': 8.0.0-rc.8-dev.13(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
+      '@prisma/orm-toolchain': 8.0.0-rc.8-dev.13(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
       '@types/pg': 8.20.4
       pathe: 2.0.3
       pg: 8.22.0
@@ -5611,11 +5613,11 @@ snapshots:
       - typanion
       - vite
 
-  '@prisma/orm-target-postgres@8.0.0-rc.8-dev.4(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))':
+  '@prisma/orm-target-postgres@8.0.0-rc.8-dev.13(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))':
     dependencies:
-      '@prisma/orm-family-sql': 8.0.0-rc.8-dev.4(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
-      '@prisma/orm-framework': 8.0.0-rc.8-dev.4(typescript@6.0.3)
-      '@prisma/orm-toolchain': 8.0.0-rc.8-dev.4(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
+      '@prisma/orm-family-sql': 8.0.0-rc.8-dev.13(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
+      '@prisma/orm-framework': 8.0.0-rc.8-dev.13(typescript@6.0.3)
+      '@prisma/orm-toolchain': 8.0.0-rc.8-dev.13(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
       '@standard-schema/spec': 1.1.0
       '@types/pg': 8.20.4
       arktype: 2.2.3
@@ -5659,10 +5661,10 @@ snapshots:
       - magicast
       - typanion
 
-  '@prisma/orm-toolchain@8.0.0-rc.8-dev.4(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))':
+  '@prisma/orm-toolchain@8.0.0-rc.8-dev.13(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))':
     dependencies:
       '@prisma/cli-engine': 0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4)
-      '@prisma/orm-framework': 8.0.0-rc.8-dev.4(typescript@6.0.3)
+      '@prisma/orm-framework': 8.0.0-rc.8-dev.13(typescript@6.0.3)
       '@vercel/detect-agent': 1.2.5
       arktype: 2.2.3
       c12: 3.3.4(magicast@0.5.4)
@@ -8072,11 +8074,11 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
-  prisma@8.0.0-rc.12(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(supports-color@7.2.0)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3):
+  prisma@8.0.0-rc.13(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(supports-color@7.2.0)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3):
     dependencies:
       '@manypkg/tools': 2.1.2
       '@prisma/cli-engine': 0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4)
-      '@prisma/composer-cli': 0.16.0(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)
+      '@prisma/composer-cli': 0.17.0(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(@types/node@26.4.0)(@types/react@19.2.18)(@vercel/nft@1.11.0(supports-color@7.2.0))(magicast@0.5.4)(pg@8.22.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))(vitest@4.1.11(@types/node@26.4.0)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(ws@8.21.3)
       '@prisma/compute-sdk': 0.42.0(@prisma/management-api-sdk@1.69.0)(supports-color@7.2.0)
       '@prisma/management-api-sdk': 1.69.0
       '@prisma/orm-toolchain': 8.0.0-rc.8(@prisma/cli-engine@0.3.0(@prisma/management-api-sdk@1.69.0)(magicast@0.5.4))(magicast@0.5.4)(typanion@3.14.0)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))

@@ -2,6 +2,7 @@
 import { getCurrentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Card } from "@/components/ui/card";
+import { DeleteUserButton } from '@/app/admin/dashboard/delete_user_button';
 import { db } from "@/prisma/db";
 import Link from "next/link";
 import { AdminProductActions } from "@/components/admin/product-actions";
@@ -60,31 +61,44 @@ export default async function AdminDashboard() {
   } catch {}
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
+   <>
+    <div className="min-h-[calc(100vh-4rem)] bg-page">
       <div className="mx-auto max-w-6xl px-4 py-8">
-        <h1 className="text-2xl font-semibold text-black">Admin Dashboard</h1>
-        <p className="mt-1 text-sm text-zinc-600">Welcome, <strong>{user.name || user.email}</strong> · Monitor marketplace activity.</p>
+        <h1 className="text-2xl font-semibold text-text">Admin Dashboard</h1>
+        <p className="mt-1 text-sm text-muted">Welcome, <strong>{user.name || user.email}</strong> · Monitor marketplace activity.</p>
 
         <div className="mt-6 grid gap-4 md:grid-cols-4">
-          <Card><p className="text-sm text-zinc-600">Users</p><p className="mt-1 text-2xl font-semibold text-black">{stats.users}</p><p className="text-xs text-zinc-500">{stats.farmers} farmers · {stats.buyers} buyers · {stats.admins} admins</p></Card>
-          <Card><p className="text-sm text-zinc-600">Products</p><p className="mt-1 text-2xl font-semibold text-black">{stats.products}</p><p className="text-xs text-zinc-500">{stats.active} active · {stats.hidden} hidden · {stats.soldOut} sold out</p></Card>
-          <Card><p className="text-sm text-zinc-600">Orders</p><p className="mt-1 text-2xl font-semibold text-black">{stats.orders}</p><p className="text-xs text-zinc-500">{stats.submitted} submitted</p></Card>
-          <Card><p className="text-sm text-zinc-600">Conversations</p><p className="mt-1 text-2xl font-semibold text-black">{stats.conversations}</p><p className="text-xs text-zinc-500">Buyer↔Farmer threads</p></Card>
+          <Card><p className="text-sm text-muted">Users</p><p className="mt-1 text-2xl font-semibold text-text">{stats.users}</p><p className="text-xs text-muted">{stats.farmers} farmers · {stats.buyers} buyers · {stats.admins} admins</p></Card>
+          <Card><p className="text-sm text-muted">Products</p><p className="mt-1 text-2xl font-semibold text-text">{stats.products}</p><p className="text-xs text-muted">{stats.active} active · {stats.hidden} hidden · {stats.soldOut} sold out</p></Card>
+          <Card><p className="text-sm text-muted">Orders</p><p className="mt-1 text-2xl font-semibold text-text">{stats.orders}</p><p className="text-xs text-muted">{stats.submitted} submitted</p></Card>
+          <Card><p className="text-sm text-muted">Conversations</p><p className="mt-1 text-2xl font-semibold text-text">{stats.conversations}</p><p className="text-xs text-muted">Buyer↔Farmer threads</p></Card>
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           <Card>
             <div className="flex items-center justify-between">
-              <h2 className="font-medium text-black">Recent Users</h2>
-              <span className="text-xs text-zinc-500">{users.length} shown</span>
+              <h2 className="font-medium text-text">Recent Users</h2>
+              <span className="text-xs text-muted">{users.length} shown</span>
             </div>
-            {users.length===0 ? <p className="mt-3 text-sm text-zinc-600">No users yet.</p> : (
+            {users.length===0 ? <p className="mt-3 text-sm text-muted">No users yet.</p> : (
               <div className="mt-4 overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead><tr className="text-left text-xs text-zinc-500 border-b border-zinc-200"><th className="py-2">Email</th><th>Name</th><th>Role</th><th>Action</th></tr></thead>
+                  <thead><tr className="text-left text-xs text-muted border-b border-border"><th className="py-2">Email</th><th>Name</th><th>Role</th><th className="text-right">Action</th></tr></thead>
                   <tbody>
                     {users.map((u)=>(
-                      <tr key={u.id} className="border-b border-zinc-100"><td className="py-2 text-black truncate max-w-[180px]">{u.email}</td><td className="text-zinc-600">{u.name || "—"}</td><td><span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-black">{u.role}</span></td><td className=""><button onClick="btn-error">Delete</td></tr>
+                      <tr key={u.id} className="border-b border-border">
+                        <td className="py-2 text-text truncate max-w-[180px]">{u.email}</td>
+                        <td className="text-muted">{u.name || "—"}</td>
+                        <td><span className="rounded-full bg-primary-soft px-2 py-0.5 text-xs font-medium text-text">{u.role}</span></td>
+                        <td className="text-right">
+                          <DeleteUserButton
+                            id={u.id}
+                            email={u.email}
+                            disabled={u.id === user.id || u.role === "ADMIN"}
+                            disabledReason={u.id === user.id ? "You cannot remove yourself" : "Admin accounts cannot be removed"}
+                          />
+                        </td>
+                        </tr>
                     ))}
                   </tbody>
                 </table>
@@ -95,15 +109,15 @@ export default async function AdminDashboard() {
 
           <Card>
             <div className="flex items-center justify-between">
-              <h2 className="font-medium text-black">Recent Orders</h2>
-              <Link href="/farmer/orders" className="text-xs font-medium text-black hover:underline">View all</Link>
+              <h2 className="font-medium text-text">Recent Orders</h2>
+              <span className="text-xs text-muted">{orders.length} shown · {stats.orders} total</span>
             </div>
-            {orders.length===0 ? <p className="mt-3 text-sm text-zinc-600">No orders yet.</p> : (
+            {orders.length===0 ? <p className="mt-3 text-sm text-muted">No orders yet.</p> : (
               <div className="mt-3 space-y-2">
                 {orders.map((o)=>(
-                  <div key={o.id} className="flex items-center justify-between rounded-md border border-zinc-200 px-3 py-2">
-                    <div><p className="text-sm font-medium text-black">Order #{o.id} · {o.buyerEmail}</p><p className="text-xs text-zinc-500">{new Date(o.createdAt).toLocaleString()}</p></div>
-                    <div className="text-right"><span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-black">{o.status}</span><p className="text-sm font-medium text-black">{o.totalAmount.toLocaleString()} {o.currency}</p></div>
+                  <div key={o.id} className="flex items-center justify-between rounded-md border border-border px-3 py-2">
+                    <div><p className="text-sm font-medium text-text">Order #{o.id} · {o.buyerEmail}</p><p className="text-xs text-muted">{new Date(o.createdAt).toLocaleString()}</p></div>
+                    <div className="text-right"><span className="rounded-full bg-primary-soft px-2 py-0.5 text-xs font-medium text-text">{o.status}</span><p className="text-sm font-medium text-text">{o.totalAmount.toLocaleString()} {o.currency}</p></div>
                   </div>
                 ))}
               </div>
@@ -112,18 +126,18 @@ export default async function AdminDashboard() {
         </div>
 
         <Card className="mt-6">
-          <h2 className="font-medium text-black">Products — moderation</h2>
-          <p className="mt-1 text-sm text-zinc-600">Remove listings that violate policy. Farmers are notified implicitly via hidden status.</p>
-          {products.length===0 ? <p className="mt-3 text-sm text-zinc-600">No products listed yet.</p> : (
+          <h2 className="font-medium text-text">Products — moderation</h2>
+          <p className="mt-1 text-sm text-muted">Remove listings that violate policy. Farmers are notified implicitly via hidden status.</p>
+          {products.length===0 ? <p className="mt-3 text-sm text-muted">No products listed yet.</p> : (
             <div className="mt-4 space-y-2">
               {products.map((p)=>(
-                <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-md border border-zinc-200 px-3 py-3">
+                <div key={p.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-md border border-border px-3 py-3">
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-black truncate">{p.title} <span className="font-normal text-zinc-500">· {p.category}</span></p>
-                    <p className="text-xs text-zinc-500">{p.price.toLocaleString()} UGX · {p.status} · Farmer: {p.farmerName || p.farmerId}</p>
+                    <p className="text-sm font-medium text-text truncate">{p.title} <span className="font-normal text-muted">· {p.category}</span></p>
+                    <p className="text-xs text-muted">{p.price.toLocaleString()} UGX · {p.status} · Farmer: {p.farmerName || p.farmerId}</p>
                   </div>
                   <div className="flex gap-2">
-                    <Link href={`/products/${p.id}`} className="rounded-full border border-zinc-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:bg-zinc-50">View</Link>
+                    <Link href={`/products/${p.id}`} className="rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium text-text hover:bg-primary-soft">View</Link>
                     <AdminProductActions productId={p.id} />
                   </div>
                 </div>
@@ -133,5 +147,6 @@ export default async function AdminDashboard() {
         </Card>
       </div>
     </div>
+   </>
   );
 }

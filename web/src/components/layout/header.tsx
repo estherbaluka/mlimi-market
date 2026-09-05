@@ -1,71 +1,68 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getCurrentUser } from "@/lib/auth";
 import { LogoutButton } from "@/components/auth/logout-button";
+import { MobileMenu } from "@/components/layout/mobile-menu";
 
 export async function Header() {
   const user = await getCurrentUser();
 
   return (
-    <header className="sticky top-0 z-10 border-b border-zinc-200 bg-white">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2">
-        <span ><img src="/public/favicon.ico" alt="Logo"></img></span> 
-          <span className="text-lg font-semibold tracking-tight text-black">
+    <header className="sticky top-0 z-10 border-b border-border bg-primary">
+      <div className="relative mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-3 px-4 py-2">
+        <Link href="/" className="flex min-h-[44px] items-center gap-2">
+        <span ><Image src='/favicon.ico' alt="Logo" width={32} height={32}></Image></span> 
+          <span className="text-lg font-semibold tracking-tight text-white">
             Mlimi Market
-          </span>
-          <span className="hidden sm:inline text-xs font-medium text-zinc-500 rounded-full bg-zinc-100 px-2 py-0.5">
-            Farm Marketplace
           </span>
         </Link>
 
-        <nav className="flex items-center gap-2">
-          <Link href="/products" className="text-sm font-medium text-black hover:underline">Products</Link>
+        <nav aria-label="Main navigation" className="hidden flex-wrap items-center gap-x-4 gap-y-2 md:flex">
+          <Link href="/products" className="inline-flex min-h-[44px] items-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary-hover">Products</Link>
           {user ? (
             <>              
               {user.role === "BUYER" && (
                 <>
-                  <Link href="/buyer/cart" className="text-sm font-medium text-black hover:underline">Cart</Link>
-                  <Link href="/buyer/orders" className="text-sm font-medium text-black hover:underline">Orders</Link>
-                  <Link href="/buyer/messages" className="text-sm font-medium text-black hover:underline">Messages</Link>
-                  <Link href="/buyer/dashboard" className="text-sm font-medium text-black hover:underline">Dashboard</Link>
+                  <Link href="/buyer/cart" className="inline-flex min-h-[44px] items-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary-hover">Cart</Link>
+                  <Link href="/buyer/orders" className="inline-flex min-h-[44px] items-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary-hover">Orders</Link>
+                  <Link href="/buyer/messages" className="inline-flex min-h-[44px] items-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary-hover">Messages</Link>
+                  <Link href="/buyer/dashboard" className="inline-flex min-h-[44px] items-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary-hover">Dashboard</Link>
                 </>
               )}
               {user.role === "FARMER" && (
                 <>
-                  
-                  <Link href="/farmer/orders" className="text-sm font-medium text-black hover:underline">Orders</Link>
-                  <Link href="/farmer/messages" className="text-sm font-medium text-black hover:underline">Messages</Link>
-                  <Link href="/farmer/dashboard" className="text-sm font-medium text-black hover:underline">Dashboard</Link>
+                  <Link href="/farmer/products" className="inline-flex min-h-[44px] items-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary-hover">Products</Link>
+                  <Link href="/farmer/orders" className="inline-flex min-h-[44px] items-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary-hover">Orders</Link>
+                  <Link href="/farmer/messages" className="inline-flex min-h-[44px] items-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary-hover">Messages</Link>
+                  <Link href="/farmer/dashboard" className="inline-flex min-h-[44px] items-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary-hover">Dashboard</Link>
                 </>
               )}
               {user.role === "ADMIN" && (
-                <Link href="/admin/dashboard" className="text-sm font-medium text-black hover:underline">Dashboard</Link>
+                <Link href="/admin/dashboard" className="inline-flex min-h-[44px] items-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary-hover">Dashboard</Link>
               )}
-              <span className="hidden sm:inline text-sm text-zinc-600">
+              <span className="hidden sm:inline text-sm text-muted bg-primary-soft px-2">
                 {user.name || user.email}
               </span>
-              <span className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white">
-                {user.role}
-              </span>
-              <LogoutButton variant="outline" className="h-8 px-3 text-sm" />
+              <LogoutButton variant="outline" className="min-h-[44px] px-4 text-sm" />
             </>
           ) : (
             <>
               <Link
                 href="/login"
-                className="rounded-full border border-zinc-200 bg-white px-5 py-2 text-sm font-medium text-black hover:bg-zinc-50"
+                className="inline-flex min-h-[44px] items-center rounded-full border border-border bg-card px-5 py-2 text-sm font-medium text-text hover:bg-primary-soft"
               >
                 Sign in
               </Link>
               <Link
                 href="/register"
-                className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+                className="inline-flex min-h-[44px] items-center rounded-full bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary-hover"
               >
                 Create account
               </Link>
             </>
           )}
         </nav>
+        <MobileMenu user={user ? { role: user.role, name: user.name, email: user.email } : null} />
       </div>
     </header>
   );

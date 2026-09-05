@@ -22,24 +22,24 @@ export function ConversationList({ selectedId, onSelect, role }: { selectedId:nu
     refetchInterval: 5000,
   });
 
-  if (isLoading) return <div className="p-4 text-sm text-zinc-600">Loading conversations...</div>;
+  if (isLoading) return <div className="p-4 text-sm text-muted">Loading conversations...</div>;
   if (error) return <div className="p-4 text-sm text-red-600">Failed to load conversations.</div>;
   const list = data?.conversations || [];
-  if (list.length===0) return <div className="p-8 text-center"><p className="font-medium text-black">No messages yet.</p><p className="text-sm text-zinc-600">Start a conversation from a product or order.</p></div>;
+  if (list.length===0) return <div className="p-8 text-center"><p className="font-medium text-text">No messages yet.</p><p className="text-sm text-muted">Start a conversation from a product or order.</p></div>;
 
   return (
-    <div className="divide-y divide-zinc-200">
+    <div className="divide-y divide-border">
       {list.map((c)=> {
         const other = role==="BUYER" ? c.farmer : c.buyer;
         return (
-          <button key={c.id} onClick={()=>onSelect(c.id)} className={`w-full text-left p-4 hover:bg-zinc-50 ${selectedId===c.id ? "bg-zinc-100" : "bg-white"}`}>
+          <button key={c.id} onClick={()=>onSelect(c.id)} className={`w-full text-left p-4 hover:bg-primary-soft ${selectedId===c.id ? "bg-primary-soft" : "bg-card"}`}>
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
-                <p className="font-medium text-black truncate">{other?.name || other?.email || "Unknown"}</p>
-                <p className="text-xs text-zinc-500 truncate">{c.product ? `Re: ${c.product.title}` : "Direct conversation"}</p>
-                <p className="mt-1 text-sm text-zinc-600 truncate">{c.lastMessage?.body || "No messages"}</p>
+                <p className="font-medium text-text truncate">{other?.name || other?.email || "Unknown"}</p>
+                <p className="text-xs text-muted truncate">{c.product ? `Re: ${c.product.title}` : "Direct conversation"}</p>
+                <p className="mt-1 text-sm text-muted truncate">{c.lastMessage?.body || "No messages"}</p>
               </div>
-              {c.unreadCount>0 && <span className="shrink-0 rounded-full bg-black px-2 py-0.5 text-xs font-medium text-white">{c.unreadCount}</span>}
+              {c.unreadCount>0 && <span className="shrink-0 rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-white">{c.unreadCount}</span>}
             </div>
           </button>
         );

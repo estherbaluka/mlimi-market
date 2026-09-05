@@ -38,38 +38,38 @@ export default async function FarmerOrderDetailPage({ params }: { params: Promis
   if (!order) notFound();
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
+    <div className="min-h-[calc(100vh-4rem)] bg-page">
       <div className="mx-auto max-w-3xl px-4 py-8">
-        <Link href="/farmer/orders" className="text-sm font-medium text-black hover:underline">← Back to orders</Link>
+        <Link href="/farmer/orders" className="text-sm font-medium text-text hover:underline">← Back to orders</Link>
         <div className="mt-4 flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-semibold text-black">Order #{order.id as number}</h1>
-            <p className="mt-1 text-sm text-zinc-600">{new Date(String(order.createdAt)).toLocaleString()} · {order.deliveryMethod as string}</p>
+            <h1 className="text-2xl font-semibold text-text">Order #{order.id as number}</h1>
+            <p className="mt-1 text-sm text-muted">{new Date(String(order.createdAt)).toLocaleString()} · {order.deliveryMethod as string}</p>
           </div>
-          <span className="rounded-full bg-zinc-900 px-3 py-1 text-xs font-medium text-white">{order.status as string}</span>
+          <span className="rounded-full bg-primary px-3 py-1 text-xs font-medium text-white">{order.status as string}</span>
         </div>
 
         <Card className="mt-6">
-          <h2 className="font-medium text-black">Buyer</h2>
-          <p className="mt-1 text-sm text-zinc-700">{(buyer?.name as string) || (buyer?.email as string)} {buyer?.phone ? `· ${buyer.phone}` : ""}</p>
-          <p className="mt-1 text-sm text-zinc-600">{buyer?.email as string}</p>
-          {order.deliveryMethod === "DELIVERY" ? <p className="mt-3 text-sm text-zinc-700"><span className="font-medium">Delivery address:</span> {(order.deliveryAddress as string) || "—"}</p> : <p className="mt-3 text-sm text-zinc-700"><span className="font-medium">Pickup location:</span> {(order.pickupLocation as string) || "—"}</p>}
-          {order.buyerNote && <p className="mt-2 text-sm text-zinc-600"><span className="font-medium">Note:</span> {order.buyerNote as string}</p>}
+          <h2 className="font-medium text-text">Buyer</h2>
+          <p className="mt-1 text-sm text-text">{(buyer?.name as string) || (buyer?.email as string)} {buyer?.phone ? `· ${buyer.phone}` : ""}</p>
+          <p className="mt-1 text-sm text-muted">{buyer?.email as string}</p>
+          {order.deliveryMethod === "DELIVERY" ? <p className="mt-3 text-sm text-text"><span className="font-medium">Delivery address:</span> {(order.deliveryAddress as string) || "—"}</p> : <p className="mt-3 text-sm text-text"><span className="font-medium">Pickup location:</span> {(order.pickupLocation as string) || "—"}</p>}
+          {order.buyerNote && <p className="mt-2 text-sm text-muted"><span className="font-medium">Note:</span> {order.buyerNote as string}</p>}
         </Card>
 
         <Card className="mt-6">
-          <h2 className="font-medium text-black">Items</h2>
-          <ul className="mt-3 divide-y divide-zinc-200">
+          <h2 className="font-medium text-text">Items</h2>
+          <ul className="mt-3 divide-y divide-border">
             {items.map((it,i)=>(
-              <li key={i} className="flex justify-between py-2 text-sm"><span className="text-zinc-700">{it.productNameSnapshot as string} · {it.quantity as number} {it.unit as string}</span><span className="font-medium text-black">{((it.unitPriceSnapshot as number)*(it.quantity as number)).toLocaleString()} UGX</span></li>
+              <li key={i} className="flex justify-between py-2 text-sm"><span className="text-text">{it.productNameSnapshot as string} · {it.quantity as number} {it.unit as string}</span><span className="font-medium text-text">{((it.unitPriceSnapshot as number)*(it.quantity as number)).toLocaleString()} UGX</span></li>
             ))}
           </ul>
-          <div className="mt-3 flex justify-between font-semibold text-black"><span>Total</span><span>{(order.totalAmount as number).toLocaleString()} {(order.currency as string)}</span></div>
+          <div className="mt-3 flex justify-between font-semibold text-text"><span>Total</span><span>{(order.totalAmount as number).toLocaleString()} {(order.currency as string)}</span></div>
         </Card>
 
         <Card className="mt-6">
-          <h2 className="font-medium text-black">Update status</h2>
-          <p className="mt-1 text-sm text-zinc-600">Move the order forward as you prepare it.</p>
+          <h2 className="font-medium text-text">Update status</h2>
+          <p className="mt-1 text-sm text-muted">Move the order forward as you prepare it.</p>
           <div className="mt-4">
             <FarmerOrderActions orderId={orderId} currentStatus={order.status as string} deliveryMethod={order.deliveryMethod as string} />
           </div>

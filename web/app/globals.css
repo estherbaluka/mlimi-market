@@ -1,26 +1,66 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafaf7;
+  --foreground: #1e2939;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: #2e7d4f;
+  --color-primary-hover: #256a42;
+  --color-primary-soft: #e6f2eb;
+  --color-accent: #f4a261;
+  --color-accent-hover: #e8934a;
+  --color-accent-soft: #fef3e6;
+  --color-card: #fffefb;
+  --color-page: #fafaf7;
+  --color-border: #e7e5e4;
+  --color-text: #1e2939;
+  --color-muted: #64748b;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Inter", "Segoe UI", Roboto, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-page);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Thumb-friendly tap targets: 44px minimum */
+a,
+button,
+[role="button"],
+input[type="submit"] {
+  min-height: 44px;
+}
+
+/* Inline text links and small pills opt out of the 44px rule */
+a.inline-link,
+header nav a,
+footer a {
+  min-height: 0;
+}
+
+/* Flat design: no shadows anywhere, fast on low-end devices */
+*,
+*::before,
+*::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Accessible focus: forest green ring */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Generous touch spacing for form controls */
+input,
+select,
+textarea {
+  font-size: 16px;
 }

@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Card } from "@/components/ui/card";
 import { Input, Label, Select, Textarea } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ImageUploader } from "@/components/products/image-uploader";
 
 const schema = z.object({
   title: z.string().trim().min(3, "Product title is required"),
@@ -19,7 +20,7 @@ const schema = z.object({
   unit: z.string().trim().min(1, "Unit is required"),
   stockQuantity: z.coerce.number().int().min(0, "Stock cannot be negative"),
   status: z.enum(["ACTIVE","HIDDEN","SOLD_OUT"]).default("ACTIVE"),
-  imageUrl: z.string().trim().url("Invalid URL").optional().or(z.literal("")),
+  images: z.array(z.string().min(1)).max(5, "At most 5 images allowed").min(1, "At least one product image is required"),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -27,12 +28,12 @@ type FormValues = z.infer<typeof schema>;
 export default function FarmerNewProductPage() {
   const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
-  const { register, handleSubmit, formState:{ errors, isSubmitting } } = useForm<FormValues>({ resolver: zodResolver(schema), defaultValues:{ currency:"UGX", status:"ACTIVE", unit:"kg" }});
+  const { register, handleSubmit, control, formState:{ errors, isSubmitting } } = useForm<FormValues>({ resolver: zodResolver(schema), defaultValues:{ currency:"UGX", status:"ACTIVE", unit:"kg", images: [] }});
 
   async function onSubmit(values: FormValues) {
     setServerError(null);
     try {
-      const res = await fetch("/api/products", { method:"POST", headers:{ "Content-Type":"application/json"}, body: JSON.stringify({ ...values, images: values.imageUrl ? [values.imageUrl] : [] })});
+      const res = await fetch("/api/products", { method:"POST", headers:{ "Content-Type":"application/json"}, body: JSON.stringify(values)});
       const data = await res.json();
       if (!res.ok) {
         if (data.details) { const first = Object.values(data.details).flat()[0] as string|undefined; setServerError(first || data.error); } else setServerError(data.error || "Failed to create product");
@@ -44,11 +45,11 @@ export default function FarmerNewProductPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
+    <div className="min-h-[calc(100vh-4rem)] bg-page">
       <div className="mx-auto max-w-2xl px-4 py-8">
-        <Link href="/farmer/products" className="text-sm font-medium text-black hover:underline">← Back to products</Link>
-        <h1 className="mt-4 text-2xl font-semibold text-black">Add Product</h1>
-        <p className="mt-1 text-sm text-zinc-600">List produce for buyers. Solid colors only.</p>
+        <Link href="/farmer/products" className="text-sm font-medium text-text hover:underline">← Back to products</Link>
+        <h1 className="mt-4 text-2xl font-semibold text-text">Add Product</h1>
+        <p className="mt-1 text-sm text-muted">List produce for buyers. Solid colors only.</p>
         <Card className="mt-6">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
             {serverError && <div className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{serverError}</div>}
@@ -63,7 +64,15 @@ export default function FarmerNewProductPage() {
             </div>
             <div className="space-y-2"><Label htmlFor="currency">Currency</Label><Input id="currency" {...register("currency")} />{errors.currency && <p className="text-sm text-red-600">{errors.currency.message}</p>}</div>
             <div className="space-y-2"><Label htmlFor="description">Description (optional)</Label><Textarea id="description" placeholder="Fresh, organic..." {...register("description")} /></div>
-            <div className="space-y-2"><Label htmlFor="imageUrl">Image URL (optional)</Label><Input id="imageUrl" placeholder="https://..." {...register("imageUrl")} />{errors.imageUrl && <p className="text-sm text-red-600">{errors.imageUrl.message}</p>}</div>
+            <div className="space-y-2">
+              <Label htmlFor="product-images">Product images (required)</Label>
+              <Controller
+                control={control}
+                name="images"
+                render={({ field }) => <ImageUploader value={field.value || []} onChange={field.onChange} />}
+              />
+              {errors.images && <p className="text-sm text-red-600">{errors.images.message}</p>}
+            </div>
             <div className="space-y-2"><Label htmlFor="status">Status</Label><Select id="status" {...register("status")}><option value="ACTIVE">ACTIVE</option><option value="HIDDEN">HIDDEN</option><option value="SOLD_OUT">SOLD_OUT</option></Select></div>
             <Button type="submit" disabled={isSubmitting} size="lg" className="w-full">{isSubmitting ? "Creating..." : "Add Product"}</Button>
           </form>

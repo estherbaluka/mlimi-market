@@ -53,13 +53,13 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-[#fbfbf5] px-4 py-12">
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-page px-4 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-semibold tracking-tight text-black">
+          <h1 className="text-3xl font-semibold tracking-tight text-text">
             Welcome back
           </h1>
-          <p className="mt-2 text-sm text-zinc-600">
+          <p className="mt-2 text-sm text-muted">
             Sign in to your Mlimi Market account
           </p>
         </div>
@@ -107,9 +107,9 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-zinc-600">
+          <p className="mt-6 text-center text-sm text-muted">
             Don&apos;t have an account?{" "}
-            <Link href="/register" className="font-medium text-black hover:underline">
+            <Link href="/register" className="font-medium text-text hover:underline">
               Create account
             </Link>
           </p>

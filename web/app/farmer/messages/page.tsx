@@ -11,10 +11,10 @@ export default async function FarmerMessagesPage({ searchParams }: { searchParam
   const params = await searchParams;
   const initialId = params.c ? Number(params.c) : null;
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
+    <div className="min-h-[calc(100vh-4rem)] bg-page">
       <div className="mx-auto max-w-6xl px-4 py-6">
-        <h1 className="text-2xl font-semibold text-black">Messages</h1>
-        <p className="text-sm text-zinc-600">Reply to buyers — polling every 5s.</p>
+        <h1 className="text-2xl font-semibold text-text">Messages</h1>
+        <p className="text-sm text-muted">Reply to buyers — polling every 5s.</p>
         <Card className="mt-6 p-0 overflow-hidden">
           <BuyerMessagesClient currentUserId={user.id} initialConversationId={Number.isNaN(initialId)?null:initialId} role="FARMER" />
         </Card>

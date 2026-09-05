@@ -28,8 +28,8 @@ export function AdminProductActions({ productId }: { productId:number }) {
   }
   return (
     <>
-      <button disabled={loading} onClick={hide} className="rounded-full border border-zinc-200 bg-white px-4 py-1.5 text-sm font-medium text-black hover:bg-zinc-50 disabled:opacity-50">Hide</button>
-      <button disabled={loading} onClick={remove} className="rounded-full bg-black px-4 py-1.5 text-sm font-medium text-white hover:bg-zinc-800 disabled:opacity-50">{loading ? "..." : "Remove"}</button>
+      <button disabled={loading} onClick={hide} className="rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium text-text hover:bg-primary-soft disabled:opacity-50">Hide</button>
+      <button disabled={loading} onClick={remove} className="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-white hover:bg-primary-hover disabled:opacity-50">{loading ? "..." : "Remove"}</button>
     </>
   );
 }

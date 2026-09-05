@@ -41,8 +41,8 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5] flex items-center justify-center px-4">
-        <Card className="text-center"><p className="font-medium text-black">Your cart is empty.</p><Link href="/products" className="mt-3 inline-flex rounded-full bg-black px-6 py-2 text-sm text-white">Browse Products</Link></Card>
+      <div className="min-h-[calc(100vh-4rem)] bg-page flex items-center justify-center px-4">
+        <Card className="text-center"><p className="font-medium text-text">Your cart is empty.</p><Link href="/products" className="mt-3 inline-flex rounded-full bg-primary px-6 py-2 text-sm text-white">Browse Products</Link></Card>
       </div>
     );
   }
@@ -75,19 +75,19 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#fbfbf5]">
+    <div className="min-h-[calc(100vh-4rem)] bg-page">
       <div className="mx-auto max-w-3xl px-4 py-8">
-        <h1 className="text-2xl font-semibold text-black">Submit Order</h1>
-        <p className="mt-1 text-sm text-zinc-600">No payment — your request will be sent to farmers.</p>
+        <h1 className="text-2xl font-semibold text-text">Submit Order</h1>
+        <p className="mt-1 text-sm text-muted">No payment — your request will be sent to farmers.</p>
 
         <Card className="mt-6">
-          <h2 className="font-medium text-black">Order summary</h2>
-          <ul className="mt-3 divide-y divide-zinc-200">
+          <h2 className="font-medium text-text">Order summary</h2>
+          <ul className="mt-3 divide-y divide-border">
             {items.map((i) => (
-              <li key={i.productId} className="flex justify-between py-2 text-sm"><span className="text-zinc-700">{i.title} × {i.quantity}</span><span className="font-medium text-black">{(i.price*i.quantity).toLocaleString()} UGX</span></li>
+              <li key={i.productId} className="flex justify-between py-2 text-sm"><span className="text-text">{i.title} × {i.quantity}</span><span className="font-medium text-text">{(i.price*i.quantity).toLocaleString()} UGX</span></li>
             ))}
           </ul>
-          <div className="mt-3 flex justify-between font-semibold text-black"><span>Total</span><span>{total.toLocaleString()} UGX</span></div>
+          <div className="mt-3 flex justify-between font-semibold text-text"><span>Total</span><span>{total.toLocaleString()} UGX</span></div>
         </Card>
 
         <Card className="mt-6">
